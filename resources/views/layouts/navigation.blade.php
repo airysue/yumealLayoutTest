@@ -74,9 +74,9 @@
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
                             <!--右上方下拉選單位置-->
-                            <x-dropdown-link :href="route('my_profile')">
+                            {{-- <x-dropdown-link :href="route('my_profile')">
                                 {{ __('個人檔案') }}
-                            </x-dropdown-link>
+                            </x-dropdown-link> --}}
                             <x-dropdown-link :href="route('logout')"
                                 onclick="event.preventDefault();
                                                 this.closest('form').submit();">
