@@ -1,0 +1,12 @@
+從GIT下載後
+
+改.env
+create database name
+composer install /  composer udpate
+php artisan key:generate
+php artisan migrate
+php artisan db:seed
+npm run dev
+
+預設1號會員是管理者、密碼是password
+順利進入改管理者帳號後，可將其他新註冊使用者的權限再改成管理者
