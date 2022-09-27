@@ -129,4 +129,19 @@ class DislikeFoodController extends Controller
     $DislikeFood->delete();
     return redirect('/DislikeFood')->with('success', '刪除資料成功');;
   }
+
+  public function search(Request $request)
+  {
+    // Get the search value from the request
+    $search = $request->input('search');
+
+    // Search in the title and body columns from the posts table
+    $DislikeFoods = DislikeFood::query()
+      ->where('df_name', 'LIKE', "%{$search}%")  //要寫確實存在的欄位名稱
+      ->orWhere('df_remark', 'LIKE', "%{$search}%")->orderBy('id', 'desc')
+      ->get();
+
+    // Return the search view with the resluts compacted
+    return view('DislikeFood.searchResult', compact('DislikeFoods'));
+  }
 }

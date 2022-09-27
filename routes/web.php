@@ -24,8 +24,14 @@ Route::get('/dashboard', function () {
   return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-// Route::get('/user/{id}', [CheckController::class, 'show'])->name('user.show');
-// Route::get('/create', [CheckController::class, 'create'])->name('user.input');
+Route::group(['middleware' => 'auth'], function () {
+
+  Route::get('/dashboard', function () {
+    return view('dashboard');
+  })->name('dashboard');
+
+  Route::view('profile',  'profile')->name('profile');
+});
 
 
 
@@ -52,12 +58,12 @@ Route::group(['namespace' => '\App\Http\Controllers', 'middleware' => 'auth'], f
   Route::get('DislikeFood/delete/{id}', [DislikeFoodController::class, 'destroy']);  //這裡要用get才能正常執行
   Route::resource('DislikeFood', DislikeFoodController::class)->middleware(['role:Admin']);
 
-  //[UserController::class,'destroy'])->name('kullanicilar.remove');  'as' => 'del_icon',
-
   // Route::resource('dietBehavior', DietBehaviorController::class)->middleware(['role:Admin']);
   // Route::resource('chainDiner', ChainDinerController::class)->middleware(['role:Admin']);
   // Route::resource('dietGroup', DietGroupController::class)->middleware(['role:Admin']);
 });
+
+Route::get('/search', 'App\Http\Controllers\DislikeFoodController@search')->name('search');
 
 
 
