@@ -30,21 +30,21 @@
                 @role('Admin')
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                         <x-nav-link href="{{ route('DislikeFood.index') }}">
-                            {{ __('厭惡食材管理') }}
+                            {{ __('不討喜食物管理') }}
                         </x-nav-link>
                     </div>
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                        <x-nav-link href="{{ url('laratrust/chainDiner') }}">
-                            {{ __('連鎖餐飲管理') }}
+                        <x-nav-link href="{{ route('ChainDiner.index') }}">
+                            {{ __('知名連鎖餐飲管理') }}
                         </x-nav-link>
                     </div>
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                        <x-nav-link href="{{ url('laratrust/dietGroup') }}">
+                        <x-nav-link href="{{ route('DietGroup.index') }}">
                             {{ __('飲食族群管理') }}
                         </x-nav-link>
                     </div>
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                        <x-nav-link href="{{ url('laratrust/dietBehavior') }}">
+                        <x-nav-link href="{{ route('DietBehavior.index') }}">
                             {{ __('飲食習性管理') }}
                         </x-nav-link>
                     </div>

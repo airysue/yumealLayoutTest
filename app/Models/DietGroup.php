@@ -4,9 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\Pivot;
 
-class DislikeUser extends pivot
+class DietGroup extends Model
 {
-    //use HasFactory;
+  use HasFactory;
+  protected $guarded = [];
 }
