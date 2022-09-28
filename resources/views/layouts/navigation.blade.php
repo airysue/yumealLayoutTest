@@ -40,12 +40,12 @@
                     </div>
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                         <x-nav-link href="{{ route('DietGroup.index') }}">
-                            {{ __('飲食族群管理') }}
+                            {{ __('飲食族群設定') }}
                         </x-nav-link>
                     </div>
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                         <x-nav-link href="{{ route('DietBehavior.index') }}">
-                            {{ __('飲食習性管理') }}
+                            {{ __('飲食習性清單管理') }}
                         </x-nav-link>
                     </div>
                 @endrole

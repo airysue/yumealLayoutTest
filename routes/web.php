@@ -1,9 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-//use App\Http\Controllers\CheckController;
 use App\Http\Controllers\DislikeFoodController;
-
+use App\Http\Controllers\ChainDinerController;
+use App\Http\Controllers\DietGroupController;
+use App\Http\Controllers\DietBehaviorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -58,19 +59,21 @@ Route::group(['namespace' => '\App\Http\Controllers', 'middleware' => 'auth'], f
   Route::get('DislikeFood/delete/{id}', [DislikeFoodController::class, 'destroy']);  //這裡要用get才能正常執行
   Route::resource('DislikeFood', DislikeFoodController::class)->middleware(['role:Admin']);
 
-  Route::get('DietBehavior/delete/{id}', [DietBehavior::class, 'destroy']);
+  Route::get('DietBehavior/delete/{id}', [DietBehaviorController::class, 'destroy']);
   Route::resource('DietBehavior', DietBehaviorController::class)->middleware(['role:Admin']);
 
-  Route::get('ChainDiner/delete/{id}', [ChainDiner::class, 'destroy']);
+  Route::get('ChainDiner/delete/{id}', [ChainDinerController::class, 'destroy']);
   Route::resource('ChainDiner', ChainDinerController::class)->middleware(['role:Admin']);
+  //Route::resource('ChainDiner', 'App\Http\Controllers\ChainDinerController')->middleware(['role:Admin']);
 
-  Route::get('DietGroup/delete/{id}', [DietGroup::class, 'destroy']);
+  Route::get('DietGroup/delete/{id}', [DietGroupController::class, 'destroy']);
   Route::resource('DietGroup', DietGroupController::class)->middleware(['role:Admin']);
 });
 
-Route::get('/search', 'App\Http\Controllers\DislikeFoodController@search')->name('search');
-
-
+Route::get('/df_search', 'App\Http\Controllers\DislikeFoodController@search')->name('DislikeFood_search');
+Route::get('/cd_search', 'App\Http\Controllers\ChainDinerController@search')->name('ChainDiner_search');
+Route::get('/dg_search', 'App\Http\Controllers\DietGroupController@search')->name('DietGroup_search');
+Route::get('/db_search', 'App\Http\Controllers\DietBehaviorController@search')->name('DietBehavior_search');
 
 
 // Route::group(['prefix' => 'dashboard/vendor/', 'namespace' => '\App\Http\Controllers', 'middleware' => 'auth'], function () {

@@ -2,7 +2,7 @@
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{-- 很單純的頁面標題 --}}
-            {{ __('不討喜食物搜尋') }}
+            {{ __('飲食習性項目搜尋') }}
         </h2>
     </x-slot>
 
@@ -17,11 +17,11 @@
                             搜尋結果
                         </div>
                         <ul class="list-group list-group-flush">
-                            @if ($DislikeFoods->isNotEmpty())
-                                @foreach ($DislikeFoods as $DislikeFood)
+                            @if ($DietBehaviors->isNotEmpty())
+                                @foreach ($DietBehaviors as $DietBehavior)
                                     <li class="list-group-item">
-                                        <h4 class="card-title"> 編號：{{ $DislikeFood->df_no }} /
-                                            不討喜食物名稱：{{ $DislikeFood->df_name }}</h4>
+                                        <h4 class="card-title"> 編號：{{ $DietBehavior->db_no }} /
+                                            飲食習性項目名稱：{{ $DietBehavior->db_name }}</h4>
                                     </li>
                                 @endforeach
                             @else
@@ -37,7 +37,7 @@
                     </div>
 
 
-                    <div class="mt-2 ml-2"><a href="/DislikeFood" style="text-align: left;">Back to HOME</a></div>
+                    <div class="mt-2 ml-2"><a href="/DietBehavior" style="text-align: left;">Back to HOME</a></div>
 
                     <!-- 內容結束 -->
 

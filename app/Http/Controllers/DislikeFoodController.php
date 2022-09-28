@@ -127,7 +127,7 @@ class DislikeFoodController extends Controller
   {
     $DislikeFood = DislikeFood::findOrFail($id);
     $DislikeFood->delete();
-    return redirect('/DislikeFood')->with('success', '刪除資料成功');;
+    return redirect('/DislikeFood')->with('success', '刪除資料成功');
   }
 
   public function search(Request $request)

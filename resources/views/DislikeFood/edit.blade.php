@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up Form</title>
+    <title>編輯不討喜食物</title>
     <link rel="stylesheet" href="https://codepen.io/gymratpacks/pen/VKzBEp#0">
     <link href='https://fonts.googleapis.com/css?family=Nunito:400,300' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
@@ -147,7 +147,7 @@
                 @csrf
                 @method('PUT')
 
-                <h1> Sign Up </h1>
+                <h1>編輯不討喜食物</h1>
 
                 {{-- 一次顯示所有錯誤驗證訊息 --}}
                 {{-- @if (count($errors) > 0)

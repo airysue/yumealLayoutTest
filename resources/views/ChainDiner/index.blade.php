@@ -22,7 +22,7 @@
                             style="border-radius: 0;background-color: #999;color:#fff">
                             <span class="d-flex align-items-center mx-2"><i class="material-icons">&#xE147;</i><span class="ml-2">新增知名連鎖餐飲</span></span>
                         </a>
-                        <form action="{{ route('search') }}" method="GET" class="">
+                        <form action="{{ route('ChainDiner_search') }}" method="GET" class="">
                             <div class="input-group  mb-0">
                                 <input type="text" name="search" id="searchBtn" placeholder="Search" required />
                                 <button class="btn  ml-2" type="submit" style="border-radius: 0;background-color:#999;color:white;">搜尋</button>
@@ -48,12 +48,12 @@
                                     <td data-label="名稱"> {{ $ChainDiner->cd_name }}</td>
                                     <td data-label="類型"> {{ $ChainDiner->cd_type }}</td>
                                     <td data-label="操作">
-                                        <a href="{{ route('ChainDiner.show', $ChainDiner->id) }}" class="show mr-3">
+                                        <a href="{{ route('ChainDiner.show', $ChainDiner->id) }}" class="show mx-1">
                                             <i class="fa-sharp fa-solid fa-eye" style="color:#36304A;"
                                                 data-toggle="tooltip" title="檢視"></i></a>
 
 
-                                        <a href="{{ route('ChainDiner.edit', $ChainDiner->id) }}" class="edit mr-3">
+                                        <a href="{{ route('ChainDiner.edit', $ChainDiner->id) }}" class="edit mx-1">
                                             <i class="fa-solid fa-pen-to-square" style="color:#36304A;"
                                                 data-toggle="tooltip" title="編輯"></i></a>
 
@@ -62,8 +62,7 @@
                                             method="post" style="display: inline-block;">
                                             @csrf @method('DELETE')
 
-                                            <a href="{{ 'ChainDiner/delete/' }}{{ $ChainDiner->id }}"
-                                                onclick="return confirm('確定要刪除此筆資料嗎?')">
+                                        <a class="mx-1" href="{{ 'ChainDiner/delete/' }}{{ $ChainDiner->id }}"  onclick="return confirm('確定要刪除此筆資料嗎?')">
                                                 <i class="fa-solid fa-trash" style="color:#36304A;"
                                                     data-toggle="tooltip" title="刪除"></i></a>
                                         </form>
@@ -75,9 +74,9 @@
                         </tbody>
                     </table>
 
-                    <div style="width:85%;margin:auto;  class=" mt-1" class="d-flex">
+                    <div style="width:85%;margin:auto;"  class=" mt-1" class="d-flex">
                         <div class="card-body d-flex justify-content-end mr-0">
-                            {{ $ChainDiners->appends(['search' => request()->search])->links('vendor.pagination.bootstrap-4') }}
+                            {{ $ChainDiners->appends(['search' => request()->search])->links('vendor.pagination.bootstrap-5') }}
                         </div>
                     </div>
 
