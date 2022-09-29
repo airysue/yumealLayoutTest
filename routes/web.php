@@ -68,12 +68,26 @@ Route::group(['namespace' => '\App\Http\Controllers', 'middleware' => 'auth'], f
 
   Route::get('DietGroup/delete/{id}', [DietGroupController::class, 'destroy']);
   Route::resource('DietGroup', DietGroupController::class)->middleware(['role:Admin']);
+
+  Route::get('/df_search', 'App\Http\Controllers\DislikeFoodController@search')->name('DislikeFood_search');
+  Route::get('/cd_search', 'App\Http\Controllers\ChainDinerController@search')->name('ChainDiner_search');
+  Route::get('/dg_search', 'App\Http\Controllers\DietGroupController@search')->name('DietGroup_search');
+  Route::get('/db_search', 'App\Http\Controllers\DietBehaviorController@search')->name('DietBehavior_search');
 });
 
-Route::get('/df_search', 'App\Http\Controllers\DislikeFoodController@search')->name('DislikeFood_search');
-Route::get('/cd_search', 'App\Http\Controllers\ChainDinerController@search')->name('ChainDiner_search');
-Route::get('/dg_search', 'App\Http\Controllers\DietGroupController@search')->name('DietGroup_search');
-Route::get('/db_search', 'App\Http\Controllers\DietBehaviorController@search')->name('DietBehavior_search');
+Route::group(['namespace' => '\App\Http\Controllers', 'middleware' => 'auth'], function () {
+
+  Route::get('Diner/delete/{id}', [DinerController::class, 'destroy']);  //這裡要用get才能正常執行
+  Route::resource('Diner', DinerController::class)->middleware(['role:Vendor']);
+
+  Route::get('Meal/delete/{id}', [MealController::class, 'destroy']);
+  Route::resource('Meal', MealController::class)->middleware(['role:Vendor']);
+
+  Route::get('/diner_search', 'App\Http\Controllers\Diner@search')->name('Diner_search');
+  Route::get('/meal_search', 'App\Http\Controllers\Meal@search')->name('Meal_search');
+});
+
+
 
 
 // Route::group(['prefix' => 'dashboard/vendor/', 'namespace' => '\App\Http\Controllers', 'middleware' => 'auth'], function () {

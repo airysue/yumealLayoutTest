@@ -20,12 +20,15 @@
                     <div style="width:85%;margin: auto;" class="d-flex justify-content-between align-items-end mb-2 mt-5">
                         <a href="{{ route('DislikeFood.create') }}" class="btn "
                             style="border-radius: 0;background-color: #999;color:#fff">
-                            <span class="d-flex align-items-center mx-2"><i class="material-icons">&#xE147;</i><span class="ml-2">新增不討喜食物</span></span>
+                            <span class="d-flex align-items-center mx-0"><i class="material-icons">&#xE147;</i><span class="ml-1">新增</span></span>
                         </a>
                         <form action="{{ route('DislikeFood_search') }}" method="GET" class="">
-                            <div class="input-group  mb-0">
-                                <input type="text" name="search" id="searchBtn" placeholder="Search" required />
-                                <button class="btn  ml-2" type="submit" style="border-radius: 0;background-color:#999;color:white;">搜尋</button>
+                            <div class="input-group ">
+                                <input type="text" class="form-control" placeholder="Search"
+                                    aria-label="Search" aria-describedby="searchBtn" id="searchBtn" name="search" />
+                                <button class="input-group-text border-0" style="border-radius: 0;" >
+                                    <i class="fas fa-search"></i>
+                                </button>
                             </div>
                         </form>
                     </div>
@@ -46,7 +49,11 @@
                                 @foreach ($DislikeFoods as $DislikeFood)
                                     <td data-label="編號"> {{ $DislikeFood->df_no }}</td>
                                     <td data-label="名稱"> {{ $DislikeFood->df_name }}</td>
-                                    <td data-label="類型"> {{ $DislikeFood->df_type }}</td>
+                                    @if(trim($DislikeFood->df_type) != null)
+                                        <td data-label="類型"> {{ $DislikeFood->df_type }}</td>
+                                    @else
+                                        <td data-label="類型"> &nbsp; </td>
+                                    @endif
                                     <td data-label="操作">
                                         <a href="{{ route('DislikeFood.show', $DislikeFood->id) }}" class="show mx-1">
                                             <i class="fa-sharp fa-solid fa-eye " style="color:#36304A;"

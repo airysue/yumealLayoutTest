@@ -17,15 +17,20 @@
                     @endif
 
 
-                    <div style="width:85%;margin: auto;" class="d-flex justify-content-between align-items-end mb-2 mt-5">
+                    <div style="width:85%;margin: auto;"
+                        class="d-flex justify-content-between align-items-end mb-2 mt-5">
                         <a href="{{ route('DietGroup.create') }}" class="btn "
                             style="border-radius: 0;background-color: #999;color:#fff">
-                            <span class="d-flex align-items-center mx-2"><i class="material-icons">&#xE147;</i><span class="ml-2">新增飲食族群</span></span>
+                            <span class="d-flex align-items-center mx-0"><i class="material-icons">&#xE147;</i><span
+                                    class="ml-1">新增飲食族群</span></span>
                         </a>
                         <form action="{{ route('DietGroup_search') }}" method="GET" class="">
-                            <div class="input-group  mb-0">
-                                <input type="text" name="search" id="searchBtn" placeholder="Search" required />
-                                <button class="btn  ml-2" type="submit" style="border-radius: 0;background-color:#999;color:white;">搜尋</button>
+                            <div class="input-group ">
+                                <input type="text" class="form-control" placeholder="Search"
+                                    aria-label="Search" aria-describedby="searchBtn" id="searchBtn" name="search" />
+                                <button class="input-group-text border-0" style="border-radius: 0;" >
+                                    <i class="fas fa-search"></i>
+                                </button>
                             </div>
                         </form>
                     </div>
@@ -46,7 +51,11 @@
                                 @foreach ($DietGroups as $DietGroup)
                                     <td data-label="編號"> {{ $DietGroup->dg_no }}</td>
                                     <td data-label="名稱"> {{ $DietGroup->dg_name }}</td>
-                                    <td data-label="類型"> {{ $DietGroup->dg_type }}</td>
+                                    @if (trim($DietGroup->dg_type) != null)
+                                        <td data-label="類型"> {{ $DietGroup->dg_type }}</td>
+                                    @else
+                                        <td data-label="類型"> &nbsp; </td>
+                                    @endif
                                     <td data-label="操作">
                                         <a href="{{ route('DietGroup.show', $DietGroup->id) }}" class="show mx-1">
                                             <i class="fa-sharp fa-solid fa-eye " style="color:#36304A;"
@@ -57,8 +66,7 @@
                                             <i class="fa-solid fa-pen-to-square" style="color:#36304A;"
                                                 data-toggle="tooltip" title="編輯"></i></a>
 
-                                        <form id="del_icon"
-                                            action="{{ route('DietGroup.destroy', $DietGroup->id) }}"
+                                        <form id="del_icon" action="{{ route('DietGroup.destroy', $DietGroup->id) }}"
                                             method="post" style="display: inline-block;">
                                             @csrf @method('DELETE')
 
