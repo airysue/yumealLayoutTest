@@ -43,7 +43,7 @@ class DietBehaviorController extends Controller
   {
     //前面key區塊的名稱為表單名    //該表格4個欄位名 db_no  db_name  db_type db_remark
     $request->validate([
-      'db_no' => 'required',
+      // 'db_no' => 'required',
       'db_name' => 'required',
       'db_type' => 'required',
     ]);
@@ -51,12 +51,29 @@ class DietBehaviorController extends Controller
     $DietBehavior = new DietBehavior();
 
     $DietBehavior->db_name = request('db_name');
-    $DietBehavior->db_no = request('db_no');
+    echo 'aa=' . $DietBehavior->id;
+    //$DietBehavior->db_no = 'db_' . $DietBehavior->id;
+    //dd($DietBehavior->db_no);
     $DietBehavior->db_type = request('db_type');
     $DietBehavior->db_remark = request('db_remark');
 
     $DietBehavior->save();  //存DB
+    echo 'aaa=' . $DietBehavior->id;
+    $DietBehavior = DietBehavior::findOrFail($DietBehavior->id);
+    echo 'newaaa=' . $DietBehavior->id;
+    $DietBehavior->db_no = 'db_' . $DietBehavior->id;
+    echo 'newBBB=' . $DietBehavior->db_no;
+    $DietBehavior->update(
+      [
+        'db_no' => $DietBehavior->db_no,
+        'db_type' => $DietBehavior->db_type
+      ]
+    );
 
+
+
+    echo 'ss=' . $DietBehavior->db_no;
+    //exit;
     //return redirect('/DietBehavior)->with('mssg', '感謝填寫!');
     return redirect('/DietBehavior')->with('success', '新增資料成功'); //bootstrap alert
 

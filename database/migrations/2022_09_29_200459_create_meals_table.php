@@ -23,6 +23,7 @@ return new class extends Migration
       $table->decimal('mea_price', 5)->nullable();
       $table->string('mea_DislikeFood', 255)->nullable();
       $table->string('mea_DietGroup', 255)->nullable();
+      $table->foreignId('user_id')->constrained();  //設定外來鍵寫法
       $table->string('mea_remark01')->nullable();
       $table->string('mea_remark02')->nullable();
 

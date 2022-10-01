@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('知名連鎖餐飲管理') }}
+            {{ __('餐飲店管理') }}
         </h2>
     </x-slot>
 
@@ -19,11 +19,11 @@
 
                     <div style="width:85%;margin: auto;"
                         class="d-flex justify-content-between align-items-end mb-2 mt-5">
-                        <a href="{{ route('ChainDiner.create') }}" class="btn "
+                        <a href="{{ route('Diner.create') }}" class="btn "
                             style="border-radius: 0;background-color: #999;color:#fff">
                             <span class="d-flex align-items-center mx-0"><i class="material-icons">&#xE147;</i><span class="ml-1">新增</span></span>
                         </a>
-                        <form action="{{ route('ChainDiner_search') }}" method="GET" class="">
+                        <form action="{{ route('Diner_search') }}" method="GET" class="">
                             {{-- <div class="input-group  mb-0">
                                 <input type="text" name="search" id="searchBtn" placeholder="Search" required />
                                 <button class="btn  ml-2" type="submit" style="border-radius: 0;background-color:#999;color:white;"><i class="fas fa-search"></i></button>
@@ -59,32 +59,32 @@
                         </thead>
                         <tbody>
                             <tr>
-                                @foreach ($ChainDiners as $ChainDiner)
-                                    <td data-label="編號"> {{ $ChainDiner->cd_no }}</td>
-                                    <td data-label="名稱"> {{ $ChainDiner->cd_name }}</td>
-                                    @if (trim($ChainDiner->cd_type) != null)
-                                        <td data-label="類型"> {{ $ChainDiner->cd_type }}</td>
+                                @foreach ($Diners as $Diner)
+                                    <td data-label="編號"> {{ $Diner->cd_no }}</td>
+                                    <td data-label="名稱"> {{ $Diner->cd_name }}</td>
+                                    @if (trim($Diner->cd_type) != null)
+                                        <td data-label="類型"> {{ $Diner->cd_type }}</td>
                                     @else
                                         <td data-label="類型"> &nbsp; </td>
                                     @endif
 
                                     <td data-label="操作">
-                                        <a href="{{ route('ChainDiner.show', $ChainDiner->id) }}" class="show mx-1">
+                                        <a href="{{ route('Diner.show', $Diner->id) }}" class="show mx-1">
                                             <i class="fa-sharp fa-solid fa-eye" style="color:#36304A;"
                                                 data-toggle="tooltip" title="檢視"></i></a>
 
 
-                                        <a href="{{ route('ChainDiner.edit', $ChainDiner->id) }}" class="edit mx-1">
+                                        <a href="{{ route('Diner.edit', $Diner->id) }}" class="edit mx-1">
                                             <i class="fa-solid fa-pen-to-square" style="color:#36304A;"
                                                 data-toggle="tooltip" title="編輯"></i></a>
 
                                         <form id="del_icon"
-                                            action="{{ route('ChainDiner.destroy', $ChainDiner->id) }}" method="post"
+                                            action="{{ route('Diner.destroy', $Diner->id) }}" method="post"
                                             style="display: inline-block;">
                                             @csrf @method('DELETE')
 
                                             <a class="mx-1"
-                                                href="{{ 'ChainDiner/delete/' }}{{ $ChainDiner->id }}"
+                                                href="{{ 'Diner/delete/' }}{{ $Diner->id }}"
                                                 onclick="return confirm('確定要刪除此筆資料嗎?')">
                                                 <i class="fa-solid fa-trash" style="color:#36304A;"
                                                     data-toggle="tooltip" title="刪除"></i></a>
@@ -99,7 +99,7 @@
 
                     <div style="width:85%;margin:auto;" class=" mt-1" class="d-flex">
                         <div class="card-body d-flex justify-content-end mr-0">
-                            {{ $ChainDiners->appends(['search' => request()->search])->links('vendor.pagination.bootstrap-5') }}
+                            {{ $Diners->appends(['search' => request()->search])->links('vendor.pagination.bootstrap-5') }}
                         </div>
                     </div>
 

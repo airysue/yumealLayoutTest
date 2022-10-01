@@ -26,8 +26,11 @@ return new class extends Migration
       $table->string('din_holiday', 100)->nullable(); //公休時間
       $table->string('din_email', 100)->nullable();
       $table->boolean('din_takeoutOnly')->nullable(); //僅提供外帶
+      //$table->enum('din_takeoutOnly', ['yes', 'no'])->nullable();
       $table->boolean('din_extraServiceFee')->nullable(); //服務費額外計??
+      //$table->enum('din_extraServiceFee', ['yes', 'no'])->nullable();
       $table->string('din_serviceFee', 255)->nullable();
+      $table->foreignId('user_id'); //因只對應一人，所以取資料表單數形+欄位名稱
       $table->text('din_remark01')->nullable();
       $table->text('din_remark02')->nullable();
       $table->text('din_remark03')->nullable();
