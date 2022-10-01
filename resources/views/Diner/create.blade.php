@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>新增知名連鎖餐飲</title>
+    <title>新增餐飲店</title>
     <link rel="stylesheet" href="https://codepen.io/gymratpacks/pen/VKzBEp#0">
     <link href='https://fonts.googleapis.com/css?family=Nunito:400,300' rel='stylesheet' type='text/css'>
     <style>
@@ -178,7 +178,7 @@
                         @if (is_array(old('din_type')) && in_array('02南洋越泰美食', old('din_type'))) checked @endif>
                     <label class="light" for="02南洋越泰美食">02南洋越泰美食</label><br>
 
-<br>
+                    <br>
 
 
 
@@ -217,10 +217,17 @@
                     <label for="din_openTime">營業時間<span style="color:red;">
 
                         </span></label>
-                    <span><input type="text" name="din_openTime" placeholder="開店時間"
-                            value="{{ old('din_openTime') }}">
-                        <input type="text" name="din_closeTim" placeholder="關店時間"
-                            value="{{ old('din_closeTime') }}"></span>
+                    {{-- <span><input type="text" name="din_openTime" placeholder="開店時間"
+                            value="{{ old('din_openTime') }}"> --}}
+                    <span>
+                        <input type="time" name="din_openTime" class="form-control" placeholder="開店時間"
+                            value="{{ old('din_openTime') }}" required>
+
+                        <input type="time" name="din_closeTime" class="form-control" placeholder="關店時間"
+                            value="{{ old('din_closeTime') }}" required>
+                    </span>
+                    {{-- <input type="datetime-local" name="din_openTime" class="form-control" placeholder="開店時間"> --}}
+
 
                     <label for="din_holiday">公休日:
                         <span style="color:red;">
@@ -237,13 +244,13 @@
                             @enderror
                         </span>
                     </label>
-                    <input type="radio" value="1" name="din_takeoutOnly"
-                        @if (old('din_takeoutOnly') == '1') checked @endif>
-                    <label for="yes" class="light">是</label><br>
-                    <input type="radio" value="0" name="din_takeoutOnly"
-                        @if (old('din_takeoutOnly') == '0') checked @endif>
+                    <input type="radio" value="yes" name="din_takeoutOnly"
+                        @if (old('din_takeoutOnly') == 'yes') checked @endif>
+                    <label for="yes" class="light">是</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="radio" value="no" name="din_takeoutOnly"
+                        @if (old('din_takeoutOnly') == 'no') checked @endif>
                     <label for="no" class="light">否，僅限外帶</label>
-<br><br>
+                    <br><br>
 
                     <label>服務費需外加？
                         <span style="color:red;">
@@ -252,20 +259,30 @@
                             @enderror
                         </span>
                     </label>
-                    <input type="radio" value="1" name="din_extraServiceFee"
-                        @if (old('din_extraServiceFee') == '1') checked @endif>
-                    <label for="yes" class="light">是</label><br>
-                    <input type="radio" value="0" name="din_extraServiceFee"
-                        @if (old('din_extraServiceFee') == '0') checked @endif>
-                    <label for="no" class="light">否</label>
+                    <div style="display: inline-block">
+                        <input type="radio" value="yes" name="din_extraServiceFee"
+                            @if (old('din_extraServiceFee') == 'yes') checked @endif>
+                        <label for="yes" class="light">是</label> &nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="radio" value="no" name="din_extraServiceFee"
+                            @if (old('din_extraServiceFee') == 'no') checked @endif>
+                        <label for="no" class="light">否</label>
 
-                    <label for="din_serviceFee">額外加收之服務費費率:
+                        &nbsp;&nbsp;&nbsp;&nbsp; 外加服務費費率:
+                            <span style="color:red;">
+                                @error('din_serviceFee')
+                                    {{ $message }}
+                                @enderror
+                            </span>
+                        <input type="text" style="width: 60px;" name="din_serviceFee" value="{{ old('din_serviceFee') }}">
+                    </div><br><br>
+                    <label for="din_url">餐館網址:
                         <span style="color:red;">
-                            @error('din_serviceFee')
+                            @error('din_url')
                                 {{ $message }}
                             @enderror
                         </span></label>
-                    <input type="text" name="din_serviceFee" value="{{ old('din_serviceFee') }}"> <br><br>
+                    <input type="text" name="din_url01" value="{{ old('din_url01') }}"> <br><br>
+
 
 
                     <label for="din_remark01">備註（補充說明）: <span style="color:red;">

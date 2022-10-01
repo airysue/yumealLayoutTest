@@ -15,19 +15,31 @@
 
                     <div class="card mt-4">
                         <div class="card-header">
-                            知名連鎖餐飲小檔案
+                            餐飲店基本資料
                         </div>
                         <div class="card-body">
+                         {{-- `din_intr`, ``, ``, ``, ``, ``, ``, ``, ``, ``, --}}
+
                             <ul class="list-group list-group-flush">
-                                <li class="list-group-item">名稱：{{ $ChainDiner->cd_name }}</li>
-                                <li class="list-group-item">編號：{{ $ChainDiner->cd_no }}</li>
-                                <li class="list-group-item">類型：{{ $ChainDiner->cd_type }}</li>
-                                <li class="list-group-item">備註：{{ $ChainDiner->cd_remark }}</li>
+                                <li class="list-group-item">名稱：{{ $Diner->din_name }}</li>
+                                <li class="list-group-item">編號：{{ $Diner->din_no }}</li>
+                                <li class="list-group-item">類型：{{ $Diner->din_type }}</li>
+                                <li class="list-group-item">特色介紹：{{ $Diner->din_intr }}</li>
+                                <li class="list-group-item">開店時間：{{ $Diner->din_openTime }}</li>
+                                <li class="list-group-item">關店時間：{{ $Diner->din_closeTime }}</li>
+                                <li class="list-group-item">地址：{{ $Diner->din_addr }}</li>
+                                <li class="list-group-item">公休日：{{ $Diner->din_holiday }}</li>
+                                <li class="list-group-item">email：{{ $Diner->din_email }}</li>
+                                <li class="list-group-item">能否內用：{{ $Diner->din_takeoutOnly }}</li>
+                                <li class="list-group-item">外加服務費：{{ $Diner->din_extraServiceFee }}</li>
+                                <li class="list-group-item">服務費率：{{ $Diner->din_serviceFee }}</li>
+                                <li class="list-group-item">網址：{{ $Diner->din_url01 }}</li>
+                                <li class="list-group-item">備註：{{ $Diner->din_remark }}</li>
                             </ul>
                         </div>
                     </div>
 
-          <div class="my-2 ml-2"><a href="/ChainDiner" style="text-align: left;" >Back to HOME</a></div>
+          <div class="my-2 ml-2"><a href="/Diner" style="text-align: left;" >Back to HOME</a></div>
 
 
 
