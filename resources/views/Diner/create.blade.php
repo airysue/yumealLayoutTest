@@ -135,7 +135,7 @@
 
 
 
-            <form action="/Diner" method="post">
+            <form action="/Diner" method="post" enctype="multipart/form-data">
                 <h1>新增餐飲店</h1>
                 @csrf
                 <fieldset>
@@ -187,7 +187,7 @@
                                 {{ $message }}
                             @enderror
                         </span></label>
-                    <input type="text" name="din_no" placeholder="hidden待處理" value="{{ old('din_no') }}">
+                    <input type="text" name="din_no" placeholder="hidden待處理" value="din001">
 
 
                     <label for="email">電子郵件:
@@ -283,6 +283,19 @@
                         </span></label>
                     <input type="text" name="din_url01" value="{{ old('din_url01') }}"> <br><br>
 
+
+
+                    @if ($message = Session::get('warning'))
+                        <div class="alert alert-success alert-block">
+                            <button type="button" class="close" data-dismiss="alert">×</button>
+                            <strong>{{ $message }}</strong>
+                        </div>
+                    @endif
+
+
+
+
+<input class="form-control" name="din_photo" type="file" id="din_photo"> <br><br>
 
 
                     <label for="din_remark01">備註（補充說明）: <span style="color:red;">

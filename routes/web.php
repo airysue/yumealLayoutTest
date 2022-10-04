@@ -5,7 +5,7 @@ use App\Http\Controllers\DislikeFoodController;
 use App\Http\Controllers\ChainDinerController;
 use App\Http\Controllers\DietGroupController;
 use App\Http\Controllers\DietBehaviorController;
-
+use App\Http\Controllers\ImagesController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -69,8 +69,9 @@ Route::group(['namespace' => '\App\Http\Controllers', 'middleware' => 'auth'], f
   Route::get('DietGroup/delete/{id}', [DietGroupController::class, 'destroy']);
   Route::resource('DietGroup', DietGroupController::class)->middleware(['role:Admin']);
 
-  Route::get('Diner/delete/{id}', [DinerController::class, 'destroy']);  //這裡要用get才能正常執行
-  Route::resource('Diner', DinerController::class)->middleware(['role:Admin']);
+  Route::get('Diner/delete/{id}', [DinerController::class, 'destroy']);
+  //Route::resource('Diner', DinerController::class)->middleware(['role:Admin']);
+  Route::resource('Diner', 'App\Http\Controllers\DinerController')->middleware(['role:Admin']);
 
   Route::get('/df_search', 'App\Http\Controllers\DislikeFoodController@search')->name('DislikeFood_search');
   Route::get('/cd_search', 'App\Http\Controllers\ChainDinerController@search')->name('ChainDiner_search');
@@ -90,9 +91,12 @@ Route::group(['namespace' => '\App\Http\Controllers', 'middleware' => 'auth'], f
   Route::get('/meal_search', 'App\Http\Controllers\Meal@search')->name('Meal_search');
 });
 
+Route::get('upload', function () {
+  return view('upload');
+});
 
-
-
+//Route::post('uploadpic', [ImagesController::class, 'uploadimage'])->name('uploadimage');
+//uploadimage
 // Route::group(['prefix' => 'dashboard/vendor/', 'namespace' => '\App\Http\Controllers', 'middleware' => 'auth'], function () {
 
 //     Route::get('/create',[CheckController::class, 'create']);

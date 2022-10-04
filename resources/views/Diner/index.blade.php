@@ -16,6 +16,13 @@
                         </div>
                     @endif
 
+                    @if ($message = Session::get('warning'))
+                        <div class="alert alert-success alert-block">
+                            <button type="button" class="close" data-dismiss="alert">×</button>
+                            <strong>{{ $message }}</strong>
+                        </div>
+                    @endif
+
 
                     <div style="width:85%;margin: auto;"
                         class="d-flex justify-content-between align-items-end mb-2 mt-5">
@@ -54,6 +61,7 @@
                                 <th><label>名稱</label></th>
                                 <th><label>類型</label></th>
                                 <th><label>網址</label></th>
+                                <th><label>圖片</label></th>
                                 <th><label>操作</label></th>
                             </tr>
                         </thead>
@@ -73,6 +81,13 @@
                                                 data-toggle="tooltip" title="位置"></i>{{ $Diner->din_url }}</a>
 
                                      {{ $Diner->din_url01 }}</td>
+
+                                     <td>
+                                            <img src="{{ asset($Diner->din_photo) }}" width= '50' height='50' class="img img-responsive" style="margin: auto;"  />
+
+
+                                        </td>
+
                                     <td data-label="操作">
 
 

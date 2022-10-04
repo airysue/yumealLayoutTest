@@ -7,6 +7,9 @@ use App\Models\Diner;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+
+// use Intervention\Image\ImageManagerStatic as Image;
+
 class DinerController extends Controller
 {
   /**
@@ -22,7 +25,7 @@ class DinerController extends Controller
   public function index()
   {
     $Diners = Diner::orderBy('id', 'desc')->get();
-    $Diners = Diner::orderBy('id', 'desc')->paginate(15);
+    $Diners = Diner::orderBy('id', 'desc')->paginate(10);
     //return view('Diner.index');
     //return view('Diner.indexBasic', [
     return view('Diner.index', [
@@ -53,11 +56,16 @@ class DinerController extends Controller
     //前面key區塊的名稱為表單名
     //表格自建欄位 `din_no`, `din_name`, `din_intr`, `din_type`, `din_openTime`, `din_closeTime`, `din_addr`, `din_holiday`, `din_email`, `din_takeoutOnly`, `din_extraServiceFee`, `din_serviceFee`, `din_remark01`
     $request->validate([
+      'din_photo' => 'required|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
+      //'file' => 'required|csv,txt,xlx,xls,pdf|max:2048', //一般檔案的寫法，還沒試是否能成功
       'din_no' => 'required',
       'din_name' => 'required'
 
 
     ]);
+
+
+
 
     $Diner = new Diner();
 
@@ -82,6 +90,26 @@ class DinerController extends Controller
     $Diner->user_id = Auth::user()->id;
     $Diner->din_url01 = request('din_url01');
     $Diner->din_remark01 = request('din_remark01');
+    $Diner->din_photo = request('din_photo');
+
+
+
+    //處理圖片上傳 start
+    $file = $request->hasFile('din_photo'); //先判斷圖片有沒有上傳成功
+    // dd($Diner->din_photo);dd($file);
+    if ($file) {
+      $requestData = $request->din_photo;
+      $fileName = time() . '-din_' . $request->file('din_photo')->getClientOriginalName();  //1664897691-din_期盼.png
+      $path = $request->file('din_photo')->storeAs('images', $fileName, 'public');  //照片已存入public\storage\images\1664897691-din_期盼.png
+      echo '$path=' . $path;  //印出  $path=images/1664897691-din_期盼.png
+      //dd($path);
+
+      $Diner->din_photo =  '/storage/' . $path;
+      //dd($Diner->din_photo);
+    } else {
+      return redirect()->route('Diner.index')->with('warning', "File upload error");
+    }
+    //處理圖片上傳 end
 
     $Diner->save();  //存DB
 
@@ -170,7 +198,7 @@ class DinerController extends Controller
   {
     $Diner = Diner::findOrFail($id);
     $Diner->delete();
-    return redirect('/Diner')->with('success', '刪除資料成功');
+    return redirect(url('/Diner'))->with('success', '刪除資料成功');
   }
 
   public function search(Request $request)
@@ -187,4 +215,20 @@ class DinerController extends Controller
     // Return the search view with the resluts compacted
     return view('Diner.searchResult', compact('Diners'));
   }
+
+
+
+  // public function uploadimage(Request $request)
+  // //public function uploadimage(Request $imagerequest)
+  // {
+  //   $imagefile = $request->din_photo;
+  //   if ($imagefile != NULL) {
+  //     $image = $request->file('din_photo');
+  //     $filename = time() . '.' . $request->photo->extension();
+  //     $image_resize = Image::make($image->getRealPath());
+  //     $image_resize->fit(250);
+  //     $image_resize->save(public_path($filename));
+  //     //$image_resize->save(public_path('users_photo/' . $filename));
+  //   }
+  // }
 }
