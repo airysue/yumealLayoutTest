@@ -322,28 +322,59 @@
                                 {{ $message }}
                             @enderror
                         </span></label>
+
+
+
                     <input type="text" name="din_url01" value="{{ $Diner->din_url01 }}"> <br><br>
 
+                    {{-- 處理圖檔區start --}}
+
+                    <label for>{{ $Diner->din_photo }}</label>
+                    <img src=" url('$Diner->din_photo')" style="max-width: 200px;" alt="">
+                    <input class="form-control" name="din_photo" type="file" id="din_photo"> <br><br>
+                    @if( ('$Diner->din_photo')!= null)
+                    not null (以這資hidden料送到db)
+                        <input type="text" name="din_photo" value="{{ $Diner->din_photo }}">
+
+                        <form id="del_din_photo" action=""
+                          method="post" style="display: inline-block;">
+                          @csrf @method('DELETE')
+{{-- {{ 'Diner/delete/' }}{{ $Diner->id }} --}}
+                          <a class="mx-1 btn btn-warning" href=""
+                              onclick="return confirm('確定要刪除此張圖片嗎?')">
+                              {{-- <i class="fa-solid fa-trash" style="color:#36304A;"
+                                  data-toggle="tooltip" title="刪除"></i> --}}
+                                  刪除圖片</a>
+                      </form>
+
+                    @else
+                        <input class="form-control" name="din_photo" type="file" id="din_photo"> <br><br>
+
+@endif
+                      {{-- {{ route('Diner.destroy', $Diner->id) }} --}}
 
 
-                    <label for="din_remark01">備註: <span style="color:red;">
-
-                        </span></label>
-                    <textarea name="din_remark01" value="">{{ $Diner->din_remark01 }}</textarea>
 
 
+                        {{-- 處理圖檔區end --}}
+                        <label for="din_remark01">備註: <span style="color:red;">
 
-
-
-                    <fieldset>
+                            </span></label>
+                        <textarea name="din_remark01" value="">{{ $Diner->din_remark01 }}</textarea>
 
 
 
 
 
+                        <fieldset>
 
 
-                        <button type="submit">完成</button>
+
+
+
+
+
+                            <button type="submit">完成</button>
 
             </form>
         </div>

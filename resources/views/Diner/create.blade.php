@@ -294,7 +294,6 @@
 
 
 
-
 <input class="form-control" name="din_photo" type="file" id="din_photo"> <br><br>
 
 

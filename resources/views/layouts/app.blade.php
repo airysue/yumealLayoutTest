@@ -21,7 +21,8 @@
 
 
     {{-- 特定頁面區start --}}
-    <link rel="stylesheet" type="text/css" href="css/airy/crud_index.css">
+    {{-- <link rel="stylesheet" type="text/css" href="css/airy/crud_index.css"> --}}
+    <link rel="stylesheet" type="text/css" href={{url('/airy/crud_index.css');}}>
     {{-- <link rel="stylesheet" type="text/css" href="css/airy/crud_create.css"> 加這css後版面會跑掉，create 頁面也無法正常生效--}}
 
     {{-- 想用bootstrapr5 頁碼頁要先改好才能用 --}}

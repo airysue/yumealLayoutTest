@@ -182,6 +182,9 @@ return [
     Illuminate\Validation\ValidationServiceProvider::class,
     Illuminate\View\ViewServiceProvider::class,
 
+    // Interventio  套件2之1
+    Intervention\Image\ImageServiceProvider::class,
+
 
     /*
          * Package Service Providers...
@@ -196,7 +199,7 @@ return [
     App\Providers\EventServiceProvider::class,
     App\Providers\RouteServiceProvider::class,
 
-    Intervention\Image\ImageServiceProvider::class,
+
 
   ],
 
@@ -214,7 +217,9 @@ return [
   'aliases' => Facade::defaultAliases()->merge([
     // 'ExampleClass' => App\Example\ExampleClass::class,
 
+    // Interventio  套件2之2
     'Image' => Intervention\Image\Facades\Image::class
+
 
 
   ])->toArray(),

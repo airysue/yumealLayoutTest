@@ -6,6 +6,7 @@ use App\Http\Controllers\ChainDinerController;
 use App\Http\Controllers\DietGroupController;
 use App\Http\Controllers\DietBehaviorController;
 use App\Http\Controllers\ImagesController;
+use Intervention\Image\Facades\Image;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -94,6 +95,18 @@ Route::group(['namespace' => '\App\Http\Controllers', 'middleware' => 'auth'], f
 Route::get('upload', function () {
   return view('upload');
 });
+
+
+
+
+// 測試Intervention Image是否能正常運作 start
+// Route::get('/', function () {
+//   $img = Image::make('https://images.pexels.com/photos/4273439/pexels-photo-4273439.jpeg')->resize(300, 200); // 這邊可以隨便用網路上的image取代
+//   return $img->response('jpg');
+// });
+// 測試Intervention Image是否能正常運作 end
+
+
 
 //Route::post('uploadpic', [ImagesController::class, 'uploadimage'])->name('uploadimage');
 //uploadimage

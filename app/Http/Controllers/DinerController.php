@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use App\Models\Diner;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 
 // use Intervention\Image\ImageManagerStatic as Image;
@@ -98,7 +99,7 @@ class DinerController extends Controller
     $file = $request->hasFile('din_photo'); //先判斷圖片有沒有上傳成功
     // dd($Diner->din_photo);dd($file);
     if ($file) {
-      $requestData = $request->din_photo;
+      //$requestData = $request->din_photo;
       $fileName = time() . '-din_' . $request->file('din_photo')->getClientOriginalName();  //1664897691-din_期盼.png
       $path = $request->file('din_photo')->storeAs('images', $fileName, 'public');  //照片已存入public\storage\images\1664897691-din_期盼.png
       echo '$path=' . $path;  //印出  $path=images/1664897691-din_期盼.png
@@ -162,6 +163,35 @@ class DinerController extends Controller
     ]);
 
     $Diner = Diner::findOrFail($id);
+    //==============================================
+    //$file = $Diner->din_photo;
+
+    // //$file = $request->hasFile('din_photo'); //先判斷圖片有沒有上傳成功
+    // //dd($Diner->din_photo);
+    // //dd($file);
+    // echo '$file=' . $file;
+
+    // if ($file) {
+
+    //   //Storage::delete('public/' . $Diner->din_photo);  //storage/images/1664905831-din_川普.png
+    //   // Storage::delete($Diner->din_photo); // If $file is path to old image
+    //   //echo '<br>$file_del=' . $Diner->din_photo;
+    //   //exit;
+    //   //$requestData = $request->din_photo;
+    //   $fileName = time() . '-din_' . $request->file('din_photo')->getClientOriginalName();  //1664897691-din_期盼.png
+    //   $path = $request->file('din_photo')->storeAs('images', $fileName, 'public');  //照片已存入public\storage\images\1664897691-din_期盼.png
+    //   echo '$path=' . $path;  //印出  $path=images/1664897691-din_期盼.png
+    //   //dd($path);
+
+    //   $Diner->din_photo =  '/storage/' . $path;
+    //   //dd($Diner->din_photo);
+    // }
+    //==============================================
+
+
+
+
+
     $Diner->update(
       [
         'din_no' => request('din_no'),
@@ -182,8 +212,10 @@ class DinerController extends Controller
         'din_serviceFee' => request('din_serviceFee'),
         'din_url01' => request('din_url01'),
         'din_remark01' => request('din_remark01')
-
+        //'din_photo' => request('din_photo')
       ]
+      //unlink(public_path('file/to/delete'));
+
     );
     return redirect('/Diner')->with('success', '更新資料成功');
   }
@@ -199,6 +231,24 @@ class DinerController extends Controller
     $Diner = Diner::findOrFail($id);
     $Diner->delete();
     return redirect(url('/Diner'))->with('success', '刪除資料成功');
+
+
+
+    //==============================================
+    $file_path = $Diner->din_photo ? "public/" . $Diner->din_photo : "";
+    if (Storage::exists($file_path)) {
+      Storage::delete($file_path);
+      $Diner->update([
+        'din_photo' => ''
+      ]);
+      session()->flash('success', '圖片已經刪除');
+    } else {
+      session()->flash('error', '圖片不存在');
+    }
+    return redirect()->back();
+    //==============================================
+
+
   }
 
   public function search(Request $request)
