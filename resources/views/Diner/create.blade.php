@@ -135,7 +135,7 @@
 
 
 
-            <form action="/Diner" method="post" enctype="multipart/form-data">
+            <form action="{{ url('/Diner') }}" method="post" enctype="multipart/form-data">
                 <h1>新增餐飲店</h1>
                 @csrf
                 <fieldset>

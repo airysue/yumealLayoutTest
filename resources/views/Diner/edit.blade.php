@@ -143,7 +143,7 @@
 <body>
     <div class="row">
         <div class="col-md-12">
-            <form action="{{ route('Diner.update', $Diner->id) }}" method="POST">
+            <form action="{{ route('Diner.update', $Diner->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
 
@@ -323,6 +323,11 @@
                             @enderror
                         </span></label>
                     <input type="text" name="din_url01" value="{{ $Diner->din_url01 }}"> <br><br>
+
+                    <input class="form-control" name="din_photo" type="file" > <br><br>
+                    {{-- <input class="form-control" name="ori_din_photo" type="hidden" value="{{ $Diner->din_photo }}"> --}}
+
+                    <input class="form-control" name="ori_din_photo" type="text" value="{{ $Diner->din_photo }}">
 
 
 

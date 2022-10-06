@@ -68,7 +68,7 @@
                         <tbody>
                             <tr>
                                 @foreach ($Diners as $Diner)
-                                    <td data-label="名稱"> {{ $Diner->din_name }}</td>
+                                    <td data-label="名稱"> {{ $Diner->id }}_{{ $Diner->din_name }}</td>
                                     @if (trim($Diner->din_type) != null)
                                         <td data-label="類型"> {{ $Diner->din_type }}</td>
                                     @else
@@ -83,7 +83,7 @@
                                      {{ $Diner->din_url01 }}</td>
 
                                      <td>
-                                            <img src="{{ asset($Diner->din_photo) }}" width= '50' height='50' class="img img-responsive" style="margin: auto;"  />
+                                            <img src="{{ asset($Diner->din_photo_path) }}" width= '50' height='50' class="img img-responsive" style="margin: auto;"  />
 
 
                                         </td>

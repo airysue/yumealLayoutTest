@@ -37,7 +37,8 @@
                                 <li class="list-group-item">備註：{{ $Diner->din_remark }}</li>
                                 <li class="list-group-item">備註：{{ $Diner->din_photo }}</li>
                                 <li class="list-group-item">備註：
-                                <img src="{{ asset($Diner->din_photo) }}" alt="" style="max-width: 500px"></li>
+                                {{-- <img src="{{ asset($Diner->din_photo) }}" alt="" style="max-width: 500px"></li> --}}
+                                <img src="{{ asset($Diner->din_photo_path) }}" alt="" style="max-width: 500px"></li>
 
                             </ul>
                         </div>
