@@ -180,7 +180,13 @@
 
                     <br>
 
-
+                    {{-- @php
+                    use App\Models\DislikeFood;
+                    $DislikeFoods =  DislikeFood::all();
+                    @endphp
+                    @foreach ( $DislikeFoods as $DislikeFood)
+                    <label><input type="checkbox" name="DislikeFood[]" value={{$DislikeFood->id}}>{{$DislikeFood->df_name}} </label>
+                    @endforeach --}}
 
                     <label for="din_no">編號:<span style="color:red;">
                             @error('din_no')

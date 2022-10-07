@@ -16,36 +16,41 @@
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     {{-- <x-nav-link href="{{route('dashboard')}}" :active="request()->routeIs('dashboard')"> --}}
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('yumeal管理中心') }}
+                        {{ __('管理中心') }}
                     </x-nav-link>
                 </div>
                 {{-- add for laratrust --}}
                 @role('Admin')
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                         <x-nav-link href="{{ url('laratrust/roles-assignment') }}">
-                            {{ __('使用者權限管理') }}
+                            {{ __('使用者權限') }}
                         </x-nav-link>
                     </div>
                 @endrole
                 @role('Admin')
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                         <x-nav-link href="{{ route('DislikeFood.index') }}">
-                            {{ __('不討喜食物管理') }}
+                            {{ __('不討喜食物') }}
                         </x-nav-link>
                     </div>
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                         <x-nav-link href="{{ route('ChainDiner.index') }}">
-                            {{ __('知名連鎖餐飲管理') }}
+                            {{ __('知名連鎖餐飲') }}
                         </x-nav-link>
                     </div>
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                         <x-nav-link href="{{ route('DietGroup.index') }}">
-                            {{ __('飲食族群設定') }}
+                            {{ __('飲食族群') }}
                         </x-nav-link>
                     </div>
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                         <x-nav-link href="{{ route('DietBehavior.index') }}">
-                            {{ __('飲食習性清單管理') }}
+                            {{ __('飲食習性清單') }}
+                        </x-nav-link>
+                    </div>
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link href="{{ route('DinerType.index') }}">
+                            {{ __('餐廳類別') }}
                         </x-nav-link>
                     </div>
                 @endrole
@@ -80,12 +85,23 @@
  <p>'not admin'</p>
  @endif --}}
 
-@role('Admin')
-this is admin
+@if((Auth::user())->hasRole('Admin') && (Auth::user())->hasRole('Vendor') )
+adminV
+@elseif( (Auth::user())->hasRole('Admin') )
+<p>Admin</p>
+ @elseif( (Auth::user())->hasRole('Vendor') )
+ <p>Vendor</p>
+@endif
+
+
+
+
+{{-- @role('Admin')
+admin
 @endrole
 @role('Vendor')
-this is vendor
-@endrole
+vendor
+@endrole --}}
 
 
 
@@ -140,7 +156,7 @@ this is vendor
     <div :class="{ 'block': open, 'hidden': !open }" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                {{ __('yumeal管理中心') }}
+                {{ __('管理中心') }}
             </x-responsive-nav-link>
             {{-- <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('yumeal管理中心') }}
@@ -148,19 +164,22 @@ this is vendor
             <hr style=" background-color: rgba(c, c, c, 0.2); height: 0px; border: 1;border-style: solid ;">
             @role('Admin')
                 <x-responsive-nav-link href="{{ route('DislikeFood.index') }}">
-                    {{ __('不討喜食物管理') }}
+                    {{ __('不討喜食物') }}
                 </x-responsive-nav-link>
 
                 <x-responsive-nav-link href="{{ route('ChainDiner.index') }}">
-                    {{ __('知名連鎖餐飲管理') }}
+                    {{ __('知名連鎖餐飲') }}
                 </x-responsive-nav-link>
 
                 <x-responsive-nav-link href="{{ route('DietGroup.index') }}">
-                    {{ __('飲食族群設定') }}
+                    {{ __('飲食族群') }}
                     </x-responsive-nav-linkk>
 
                     <x-responsive-nav-link href="{{ route('DietBehavior.index') }}">
-                    {{ __('飲食習性清單管理') }}
+                    {{ __('飲食習性清單') }}
+                    </x-responsive-nav-link>
+                    <x-responsive-nav-link href="{{ route('DinerType.index') }}">
+                    {{ __('餐廳類別') }}
                     </x-responsive-nav-link>
                 @endrole
                 <hr style=" background-color: rgba(c, c, c, 0.2); height: 0px; border: 1;border-style: solid ;">

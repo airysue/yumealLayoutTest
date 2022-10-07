@@ -5,7 +5,9 @@ use App\Http\Controllers\DislikeFoodController;
 use App\Http\Controllers\ChainDinerController;
 use App\Http\Controllers\DietGroupController;
 use App\Http\Controllers\DietBehaviorController;
-use App\Http\Controllers\ImagesController;
+
+use App\Http\Controllers\DinerController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -53,21 +55,27 @@ Route::group(['prefix' => 'laratrust', 'namespace' => '\App\Http\Controllers', '
 
 // todo: how to know what route was protect by auth ? any cmd like route:list ?
 Route::group(['namespace' => '\App\Http\Controllers', 'middleware' => 'auth'], function () {
-
-
-
+  //不討喜食物
   Route::get('DislikeFood/delete/{id}', [DislikeFoodController::class, 'destroy']);  //這裡要用get才能正常執行
   Route::resource('DislikeFood', DislikeFoodController::class)->middleware(['role:Admin']);
-
+  //飲食習性
   Route::get('DietBehavior/delete/{id}', [DietBehaviorController::class, 'destroy']);
   Route::resource('DietBehavior', DietBehaviorController::class)->middleware(['role:Admin']);
-
+  //知名連鎖餐飲
   Route::get('ChainDiner/delete/{id}', [ChainDinerController::class, 'destroy']);
   Route::resource('ChainDiner', ChainDinerController::class)->middleware(['role:Admin']);
   //Route::resource('ChainDiner', 'App\Http\Controllers\ChainDinerController')->middleware(['role:Admin']);
-
+  //飲食族群
   Route::get('DietGroup/delete/{id}', [DietGroupController::class, 'destroy']);
   Route::resource('DietGroup', DietGroupController::class)->middleware(['role:Admin']);
+  //餐廳類別
+  Route::get('DinerType/delete/{id}', [DinerTypeController::class, 'destroy']);
+  Route::resource('DinerType', DinerTypeController::class)->middleware(['role:Admin']);
+
+
+
+
+  //Route::get('Diner/delete/{id}', [DinerController::class, 'delete'])->name('delete');
 
   Route::get('Diner/delete/{id}', [DinerController::class, 'destroy']);
   //Route::resource('Diner', DinerController::class)->middleware(['role:Admin']);

@@ -6,7 +6,7 @@ use Carbon\Carbon;
 use App\Models\Diner;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
+//use Illuminate\Support\Facades\Storage;
 
 
 class DinerController extends Controller
@@ -75,10 +75,10 @@ class DinerController extends Controller
       //$file_path = public_path('/images'); //系統會自動在public\目錄下 建立一個images 資料夾 （前提是）filessystems有設定為 public。路徑顯示方式不太友善需要再調整。
       //寫法2：
       $file_path = $request->file('din_photo')->storeAs('images', $file_name, 'public'); //這個寫法會將存放資料夾和檔名一起呈現。
-      $file->move(
-        $file_path,
-        $file_name
-      );
+      // $file->move(
+      //   $file_path,
+      //   $file_name
+      // );
       echo '$file_path=  ' . $file_path;
       //寫法1印出：$file_path=  V:\xampp8017\htdocs\laravel\yumealLayoutTest\public\/files
       //寫法2印出：$file_path=  files/1665038316-din_期盼.png
@@ -185,7 +185,7 @@ class DinerController extends Controller
     $Diner = Diner::findOrFail($id);
 
 
-    $file_name = $Diner->din_photo;
+    //$file_name = $Diner->din_photo;
     //$file_path = $Diner->din_photo_path;
     //資料庫的簡單連結路徑，並無法使用在 unlink()方法上，要想辦法將路徑弄成真實在硬碟上存在的路徑
     //php無法正常顯示一條倒斜線，解決方法：利用兩個倒斜線來轉譯，頁面上看到的字串會變成一個倒斜線
@@ -193,7 +193,7 @@ class DinerController extends Controller
     $file_path = public_path() . '\\storage\\images\\' . $Diner->din_photo;
     echo '$file_path=' . $file_path;
     //會印出$file_path=V:\xampp8017\htdocs\laravel\yumealLayoutTest\public\storage\images\1665041647-din_多行不義必自斃.png
-    exit;
+    //exit;
 
     if ($request->hasFile('din_photo')) {  //如果本來就有檔案存在
 
@@ -265,6 +265,12 @@ class DinerController extends Controller
   public function destroy($id)
   {
     $Diner = Diner::findOrFail($id);
+
+    $real_file_path = public_path() . '\\storage\\images\\' . $Diner->din_photo;
+    echo '$real_file_path=' . $real_file_path;
+    //exit;
+    unlink($real_file_path);
+
     $Diner->delete();
     return redirect(url('/Diner'))->with('success', '刪除資料成功');
   }
@@ -283,20 +289,4 @@ class DinerController extends Controller
     // Return the search view with the resluts compacted
     return view('Diner.searchResult', compact('Diners'));
   }
-
-
-
-  // public function uploadimage(Request $request)
-  // //public function uploadimage(Request $imagerequest)
-  // {
-  //   $imagefile = $request->din_photo;
-  //   if ($imagefile != NULL) {
-  //     $image = $request->file('din_photo');
-  //     $filename = time() . '.' . $request->photo->extension();
-  //     $image_resize = Image::make($image->getRealPath());
-  //     $image_resize->fit(250);
-  //     $image_resize->save(public_path($filename));
-  //     //$image_resize->save(public_path('users_photo/' . $filename));
-  //   }
-  // }
 }
