@@ -79,10 +79,10 @@ class DinerController extends Controller
       //   $file_path,
       //   $file_name
       // );
-      echo '$file_path=  ' . $file_path;
+      //echo '$file_path=  ' . $file_path;
       //寫法1印出：$file_path=  V:\xampp8017\htdocs\laravel\yumealLayoutTest\public\/files
       //寫法2印出：$file_path=  files/1665038316-din_期盼.png
-      echo '<br>$file=  ' . $file;
+      //echo '<br>$file=  ' . $file;
       //寫法1印出：$file= V:\xampp8017\tmp\phpA3B1.tmp
       //寫法2印出：$file= V:\xampp8017\tmp\phpEAF4.tmp
       //exit;
@@ -118,7 +118,6 @@ class DinerController extends Controller
       $Diner->user_id = Auth::user()->id;
       $Diner->din_url01 = request('din_url01');
       $Diner->din_remark01 = request('din_remark01');
-      $Diner->din_photo = request('din_photo');
       $Diner->din_photo = $file_name; //只存檔名
       $Diner->din_photo_path =  '/storage/' . $file_path; //檔名連同圖檔所在資料夾路徑
 
@@ -165,10 +164,6 @@ class DinerController extends Controller
   public function edit($id)
   {
     $Diner = Diner::findOrFail($id);
-
-
-
-
     return view('Diner.edit', compact(['Diner']));
   }
 
@@ -238,7 +233,6 @@ class DinerController extends Controller
         'din_photo' => $Diner->din_photo,
         'din_photo_path' => $Diner->din_photo_path,
         'din_remark01' => request('din_remark01')
-
       ]
     );
     //dd($Diner);

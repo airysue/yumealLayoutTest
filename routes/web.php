@@ -7,6 +7,8 @@ use App\Http\Controllers\DietGroupController;
 use App\Http\Controllers\DietBehaviorController;
 
 use App\Http\Controllers\DinerController;
+use App\Http\Controllers\DinerTypeController;
+use App\Http\Controllers\FoodTypeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -72,10 +74,8 @@ Route::group(['namespace' => '\App\Http\Controllers', 'middleware' => 'auth'], f
   Route::get('DinerType/delete/{id}', [DinerTypeController::class, 'destroy']);
   Route::resource('DinerType', DinerTypeController::class)->middleware(['role:Admin']);
 
-
-
-
-  //Route::get('Diner/delete/{id}', [DinerController::class, 'delete'])->name('delete');
+  Route::get('FoodType/delete/{id}', [FoodTypeController::class, 'destroy']);
+  Route::resource('FoodType', FoodTypeController::class)->middleware(['role:Admin']);
 
   Route::get('Diner/delete/{id}', [DinerController::class, 'destroy']);
   //Route::resource('Diner', DinerController::class)->middleware(['role:Admin']);
@@ -85,6 +85,9 @@ Route::group(['namespace' => '\App\Http\Controllers', 'middleware' => 'auth'], f
   Route::get('/cd_search', 'App\Http\Controllers\ChainDinerController@search')->name('ChainDiner_search');
   Route::get('/dg_search', 'App\Http\Controllers\DietGroupController@search')->name('DietGroup_search');
   Route::get('/db_search', 'App\Http\Controllers\DietBehaviorController@search')->name('DietBehavior_search');
+
+  Route::get('/dt_search', 'App\Http\Controllers\DinerTypeController@search')->name('DinerType_search');
+  Route::get('/ft_search', 'App\Http\Controllers\FoodTypeController@search')->name('FoodType_search');
 });
 
 Route::group(['namespace' => '\App\Http\Controllers', 'middleware' => 'auth'], function () {

@@ -53,6 +53,11 @@
                             {{ __('餐廳類別') }}
                         </x-nav-link>
                     </div>
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link href="{{ route('FoodType.index') }}">
+                            {{ __('食物類別') }}
+                        </x-nav-link>
+                    </div>
                 @endrole
 
 
@@ -79,24 +84,24 @@
                         <button
                             class="flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
                             <div>{{ Auth::user()->name }}</div> {{-- 取得使用者名字固定用法 --}}
-{{-- @if((Auth::user())->hasRole('Admin'))
+                            {{-- @if (Auth::user()->hasRole('Admin'))
 <p>admin</p>
  @else
  <p>'not admin'</p>
  @endif --}}
 
-@if((Auth::user())->hasRole('Admin') && (Auth::user())->hasRole('Vendor') )
-adminV
-@elseif( (Auth::user())->hasRole('Admin') )
-<p>Admin</p>
- @elseif( (Auth::user())->hasRole('Vendor') )
- <p>Vendor</p>
-@endif
+                            @if (Auth::user()->hasRole('Admin') && Auth::user()->hasRole('Vendor'))
+                                adminV
+                            @elseif(Auth::user()->hasRole('Admin'))
+                                <p>Admin</p>
+                            @elseif(Auth::user()->hasRole('Vendor'))
+                                <p>Vendor</p>
+                            @endif
 
 
 
 
-{{-- @role('Admin')
+                            {{-- @role('Admin')
 admin
 @endrole
 @role('Vendor')
@@ -176,10 +181,13 @@ vendor
                     </x-responsive-nav-linkk>
 
                     <x-responsive-nav-link href="{{ route('DietBehavior.index') }}">
-                    {{ __('飲食習性清單') }}
+                        {{ __('飲食習性清單') }}
                     </x-responsive-nav-link>
                     <x-responsive-nav-link href="{{ route('DinerType.index') }}">
-                    {{ __('餐廳類別') }}
+                        {{ __('餐廳類別') }}
+                    </x-responsive-nav-link>
+                    <x-responsive-nav-link href="{{ route('FoodType.index') }}">
+                        {{ __('食物類別') }}
                     </x-responsive-nav-link>
                 @endrole
                 <hr style=" background-color: rgba(c, c, c, 0.2); height: 0px; border: 1;border-style: solid ;">

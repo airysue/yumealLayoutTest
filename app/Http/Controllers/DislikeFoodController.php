@@ -99,6 +99,8 @@ class DislikeFoodController extends Controller
    */
   public function update(Request $request, $id)
   {
+
+    //return $request->input();    exit;
     $request->validate([
       'df_no' => 'required',
       'df_name' => 'required',
