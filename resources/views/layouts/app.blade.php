@@ -27,12 +27,11 @@
     {{-- 想用bootstrapr5 頁碼頁要先改好才能用 --}}
    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
-
     {{-- 特定頁面區end --}}
 
     {{-- airy 自加的引入檔 end --}}
 
-
+<link rel="stylesheet" href="{{  asset('dist/css/app.css')  }}">
 
     <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap">

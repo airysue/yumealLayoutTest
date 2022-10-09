@@ -8,6 +8,8 @@
   <link rel="shortcut icon" href="/vendor/laratrust/img/logo.png">
   <title>Laratrust - @yield('title')</title>
   <link href="{{ mix('laratrust.css', 'vendor/laratrust') }}" rel="stylesheet">
+  {{-- airy自補css --}}
+  <link rel="stylesheet" type="text/css" href={{url('css/airy/laratrust_airyCopy.css')  }}>
   <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
 </head>
 <body>

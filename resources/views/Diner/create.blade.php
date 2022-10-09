@@ -170,21 +170,43 @@
                         </span>
                     </label>
 
-                    <input type="checkbox" value="01中式美食" name="din_type[]"
+                    {{-- <input type="checkbox" value="01中式美食" name="din_type[]"
                         @if (is_array(old('din_type')) && in_array('01中式美食', old('din_type'))) checked @endif>
-                    <label class="light" for="01中式美食">01芹菜</label><br>
+                    <label class="light" for="01中式美食">01芹菜</label><br> --}}
 
-                    <input type="checkbox" value="02南洋越泰美食" name="din_type[]"
-                        @if (is_array(old('din_type')) && in_array('02南洋越泰美食', old('din_type'))) checked @endif>
-                    <label class="light" for="02南洋越泰美食">02南洋越泰美食</label><br>
 
-                    <br>
+                    @php
+                        use App\Models\DinerType;
+                        $DinerTypes = DinerType::all();
+                    @endphp
+                    @foreach ($DinerTypes as $DinerType)
+                        <label>
+                        <input type="checkbox" name="din_type[]"
+
+                        @if (is_array(old('din_type')) && in_array($DinerType->id, old('din_type'))) checked
+                        @endif
+
+                        value={{ $DinerType->dt_typename }}>
+                                 {{ $DinerType->dt_typename }}
+                        </label>
+                    @endforeach
+
+
+
+
+
+
+
+
+
+
+                    <br><br>
 
                     {{-- @php
                     use App\Models\DislikeFood;
                     $DislikeFoods =  DislikeFood::all();
                     @endphp
-                    @foreach ( $DislikeFoods as $DislikeFood)
+                    @foreach ($DislikeFoods as $DislikeFood)
                     <label><input type="checkbox" name="DislikeFood[]" value={{$DislikeFood->id}}>{{$DislikeFood->df_name}} </label>
                     @endforeach --}}
 
@@ -274,12 +296,13 @@
                         <label for="no" class="light">否</label>
 
                         &nbsp;&nbsp;&nbsp;&nbsp; 外加服務費費率:
-                            <span style="color:red;">
-                                @error('din_serviceFee')
-                                    {{ $message }}
-                                @enderror
-                            </span>
-                        <input type="text" style="width: 60px;" name="din_serviceFee" value="{{ old('din_serviceFee') }}">
+                        <span style="color:red;">
+                            @error('din_serviceFee')
+                                {{ $message }}
+                            @enderror
+                        </span>
+                        <input type="text" style="width: 60px;" name="din_serviceFee"
+                            value="{{ old('din_serviceFee') }}">
                     </div><br><br>
                     <label for="din_url">餐館網址:
                         <span style="color:red;">
@@ -301,7 +324,7 @@
 
 
 
-<input class="form-control" name="din_photo" type="file" id="din_photo"> <br><br>
+                    <input class="form-control" name="din_photo" type="file" id="din_photo"> <br><br>
 
 
                     <label for="din_remark01">備註（補充說明）: <span style="color:red;">

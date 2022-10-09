@@ -46,7 +46,6 @@ class DinerTypeController extends Controller
     $request->validate([
       'dt_no' => 'required',
       'dt_typename' => 'required'
-
     ]);
 
     $DinerType = new DinerType();
@@ -104,8 +103,7 @@ class DinerTypeController extends Controller
 
     $request->validate([
       'dt_no' => 'required',
-      'dt_typename' => 'required',
-      'dt_sort' => 'required',
+      'dt_typename' => 'required'
     ]);
 
     $DinerType = DinerType::findOrFail($id);

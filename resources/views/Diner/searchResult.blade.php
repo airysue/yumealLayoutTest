@@ -1,8 +1,8 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{-- 很單純的頁面標題 --}}
-            {{ __('知名連鎖餐飲搜尋') }}
+            {{-- 頁面標題 --}}
+            {{ __('餐飲店搜尋') }}
         </h2>
     </x-slot>
 
@@ -17,11 +17,11 @@
                             搜尋結果
                         </div>
                         <ul class="list-group list-group-flush">
-                            @if ($ChainDiners->isNotEmpty())
-                                @foreach ($ChainDiners as $ChainDiner)
+                            @if ($Diners->isNotEmpty())
+                                @foreach ($Diners as $Diner)
                                     <li class="list-group-item">
-                                        <h4 class="card-title"> 編號：{{ $ChainDiner->cd_no }} /
-                                            連鎖餐飲店名稱：{{ $ChainDiner->cd_name }}</h4>
+                                        <h4 class="card-title"> 編號：{{ $Diner->din_no }} /
+                                            餐飲店名稱：{{ $Diner->din_name }}</h4>
                                     </li>
                                 @endforeach
                             @else
@@ -37,7 +37,7 @@
                     </div>
 
 
-                    <div class="mt-2 ml-2"><a href="/DislikeFood" style="text-align: left;">Back to HOME</a></div>
+                    <div class="mt-2 ml-2"><a href= {{ url('/Diner') }} style="text-align: left;">Back to HOME</a></div>
 
                     <!-- 內容結束 -->
 

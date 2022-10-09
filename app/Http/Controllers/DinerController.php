@@ -58,7 +58,6 @@ class DinerController extends Controller
     $request->validate([
       'din_photo' => 'required|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
       //'file' => 'required|csv,txt,xlx,xls,pdf|max:2048', //一般檔案的寫法，還沒試是否能成功
-      'din_no' => 'required',
       'din_name' => 'required',
       'din_photo' => 'required'
     ]);

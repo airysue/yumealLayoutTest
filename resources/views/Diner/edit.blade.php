@@ -215,13 +215,28 @@
                     @endphp
 
 
-                    <input type="checkbox" value="01中式美食" name="din_type[]"
+                    {{-- <input type="checkbox" value="01中式美食" name="din_type[]"
                         {{ in_array('01中式美食', (array) $Diners) ? 'checked' : '' }}>
-                    <label class="light" for="01中式美食">01中式美食</label><br>
+                    <label class="light" for="01中式美食">01中式美食</label><br> --}}
 
-                    <input type="checkbox" value="02南洋越泰美食" name="din_type[]"
-                        {{ in_array('02南洋越泰美食', (array) $Diners) ? 'checked' : '' }}>
-                    <label class="light" for="02南洋越泰美食">02南洋越泰美食</label><br><br>
+
+
+                    @php
+                        use App\Models\DinerType;
+                        $DinerTypes = DinerType::all();
+                    @endphp
+                    @foreach ($DinerTypes as $DinerType)
+                        <label>
+                            <input type="checkbox" name="din_type[]"
+                                {{ in_array($DinerType->dt_typename, (array) $Diners) ? 'checked' : '' }}
+                                value={{ $DinerType->dt_typename }}>
+                            {{ $DinerType->dt_typename }}
+                        </label>
+                    @endforeach
+
+
+
+
 
 
 
@@ -324,9 +339,10 @@
                         </span></label>
                     <input type="text" name="din_url01" value="{{ $Diner->din_url01 }}"> <br><br>
 
-                    <input class="form-control" name="din_photo" type="file" > <br><br>
-                    <input class="form-control" name="ori_din_photo" type="hidden" value="{{ $Diner->din_photo }}">
-                    {{--<input class="form-control" name="ori_din_photo" type="text" value="{{ $Diner->din_photo }}">--}}
+                    <input class="form-control" name="din_photo" type="file"> <br><br>
+                    <input class="form-control" name="ori_din_photo" type="hidden"
+                        value="{{ $Diner->din_photo }}">
+                    {{-- <input class="form-control" name="ori_din_photo" type="text" value="{{ $Diner->din_photo }}"> --}}
 
 
 

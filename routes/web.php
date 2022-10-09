@@ -86,6 +86,7 @@ Route::group(['namespace' => '\App\Http\Controllers', 'middleware' => 'auth'], f
   Route::get('/dg_search', 'App\Http\Controllers\DietGroupController@search')->name('DietGroup_search');
   Route::get('/db_search', 'App\Http\Controllers\DietBehaviorController@search')->name('DietBehavior_search');
 
+  Route::get('/din_search', 'App\Http\Controllers\DinerController@search')->name('Diner_search');
   Route::get('/dt_search', 'App\Http\Controllers\DinerTypeController@search')->name('DinerType_search');
   Route::get('/ft_search', 'App\Http\Controllers\FoodTypeController@search')->name('FoodType_search');
 });
@@ -98,8 +99,8 @@ Route::group(['namespace' => '\App\Http\Controllers', 'middleware' => 'auth'], f
   Route::get('Meal/delete/{id}', [MealController::class, 'destroy']);
   Route::resource('Meal', MealController::class)->middleware(['role:Vendor']);
 
-  Route::get('/diner_search', 'App\Http\Controllers\Diner@search')->name('Diner_search');
-  Route::get('/meal_search', 'App\Http\Controllers\Meal@search')->name('Meal_search');
+  Route::get('/din_search', 'App\Http\Controllers\DinerController@search')->name('Diner_search');
+  Route::get('/meal_search', 'App\Http\Controllers\MealController@search')->name('Meal_search');
 });
 
 Route::get('upload', function () {
