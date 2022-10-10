@@ -2,7 +2,7 @@
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{-- 很單純的頁面標題 --}}
-            {{ __('知名連鎖餐飲搜尋') }}
+            {{ __('餐點搜尋') }}
         </h2>
     </x-slot>
 
@@ -17,11 +17,11 @@
                             搜尋結果
                         </div>
                         <ul class="list-group list-group-flush">
-                            @if ($ChainDiners->isNotEmpty())
-                                @foreach ($ChainDiners as $ChainDiner)
+                            @if ($Meals->isNotEmpty())
+                                @foreach ($Meals as $Meal)
                                     <li class="list-group-item">
-                                        <h4 class="card-title"> 編號：{{ $ChainDiner->cd_no }} /
-                                            連鎖餐飲店名稱：{{ $ChainDiner->cd_name }}</h4>
+                                        <h4 class="card-title"> 編號：{{ $Meal->mea_no }} /
+                                            餐點名稱：{{ $Meal->mea_name }}</h4>
                                     </li>
                                 @endforeach
                             @else

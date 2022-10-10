@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('知名連鎖餐飲管理') }}
+            {{ __('餐點管理') }}
         </h2>
     </x-slot>
 
@@ -16,14 +16,22 @@
                         </div>
                     @endif
 
+                    @if ($message = Session::get('warning'))
+                        <div class="alert alert-success alert-block">
+                            <button type="button" class="close" data-dismiss="alert">×</button>
+                            <strong>{{ $message }}</strong>
+                        </div>
+                    @endif
+
 
                     <div style="width:85%;margin: auto;"
                         class="d-flex justify-content-between align-items-end mb-2 mt-5">
-                        <a href="{{ route('ChainDiner.create') }}" class="btn "
+                        <a href="{{ route('Meal.create') }}" class="btn "
                             style="border-radius: 0;background-color: #999;color:#fff">
-                            <span class="d-flex align-items-center mx-0"><i class="material-icons">&#xE147;</i><span class="ml-1">新增</span></span>
+                            <span class="d-flex align-items-center mx-0"><i class="material-icons">&#xE147;</i><span
+                                    class="ml-1">新增</span></span>
                         </a>
-                        <form action="{{ route('ChainDiner_search') }}" method="GET" class="">
+                        <form action="{{ route('Meal_search') }}" method="GET" class="">
                             {{-- <div class="input-group  mb-0">
                                 <input type="text" name="search" id="searchBtn" placeholder="Search" required />
                                 <button class="btn  ml-2" type="submit" style="border-radius: 0;background-color:#999;color:white;"><i class="fas fa-search"></i></button>
@@ -31,9 +39,9 @@
 
 
                             <div class="input-group ">
-                                <input type="text" class="form-control" placeholder="Search"
-                                    aria-label="Search" aria-describedby="searchBtn" id="searchBtn" name="search" />
-                                <button class="input-group-text border-0" style="border-radius: 0;" >
+                                <input type="text" class="form-control" placeholder="Search" aria-label="Search"
+                                    aria-describedby="searchBtn" id="searchBtn" name="search" />
+                                <button class="input-group-text border-0" style="border-radius: 0;">
                                     <i class="fas fa-search"></i>
                                 </button>
                             </div>
@@ -50,41 +58,57 @@
                     <table style="width:85%; margin: auto;">
                         <thead>
                             <tr>
-                                <th><label>編號</label></th>
                                 <th><label>名稱</label></th>
                                 <th><label>類型</label></th>
+                                <th><label>網址</label></th>
+                                <th><label>圖片</label></th>
                                 <th><label>操作</label></th>
-
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                @foreach ($ChainDiners as $ChainDiner)
-                                    <td data-label="編號"> {{ $ChainDiner->cd_no }}</td>
-                                    <td data-label="名稱"> {{ $ChainDiner->cd_name }}</td>
-                                    @if (trim($ChainDiner->cd_type) != null)
-                                        <td data-label="類型"> {{ $ChainDiner->cd_type }}</td>
+                                @foreach ($Meals as $Meal)
+                                    <td data-label="名稱"> {{ $Meal->id }}_{{ $Meal->mea_name }}</td>
+                                    @if (trim($Meal->mea_type) != null)
+                                        <td data-label="類型"> {{ $Meal->mea_type }}</td>
                                     @else
                                         <td data-label="類型"> &nbsp; </td>
                                     @endif
 
+
+
+                                    <td data-label="網址">
+                                     <a href="" class="edit mx-1">
+                                            <i class="fa-solid fa-earth" style="color:#36304A;"
+                                                data-toggle="tooltip" title="位置"></i>{{ $Meal->mea_url }}</a>
+
+                                     {{ $Meal->mea_url01 }}</td>
+
+                                     <td>
+                                            <img src="{{ asset($Meal->mea_photo_path) }}" width= '50' height='50' class="img img-responsive" style="margin: auto;"  />
+
+
+                                        </td>
+
                                     <td data-label="操作">
-                                        <a href="{{ route('ChainDiner.show', $ChainDiner->id) }}" class="show mx-1">
+
+
+
+
+                                        <a href="{{ route('Meal.show', $Meal->id) }}" class="show mx-1">
                                             <i class="fa-sharp fa-solid fa-eye" style="color:#36304A;"
                                                 data-toggle="tooltip" title="檢視"></i></a>
 
 
-                                        <a href="{{ route('ChainDiner.edit', $ChainDiner->id) }}" class="edit mx-1">
+                                        <a href="{{ route('Meal.edit', $Meal->id) }}" class="edit mx-1">
                                             <i class="fa-solid fa-pen-to-square" style="color:#36304A;"
                                                 data-toggle="tooltip" title="編輯"></i></a>
 
-                                        <form id="del_icon"
-                                            action="{{ route('ChainDiner.destroy', $ChainDiner->id) }}" method="post"
-                                            style="display: inline-block;">
+                                        <form id="del_icon" action="{{ route('Meal.destroy', $Meal->id) }}"
+                                            method="post" style="display: inline-block;">
                                             @csrf @method('DELETE')
 
-                                            <a class="mx-1"
-                                                href="{{ 'ChainDiner/delete/' }}{{ $ChainDiner->id }}"
+                                            <a class="mx-1" href="{{ 'Meal/delete/' }}{{ $Meal->id }}"
                                                 onclick="return confirm('確定要刪除此筆資料嗎?')">
                                                 <i class="fa-solid fa-trash" style="color:#36304A;"
                                                     data-toggle="tooltip" title="刪除"></i></a>
@@ -99,7 +123,7 @@
 
                     <div style="width:85%;margin:auto;" class=" mt-1" class="d-flex">
                         <div class="card-body d-flex justify-content-end mr-0">
-                            {{ $ChainDiners->appends(['search' => request()->search])->links('vendor.pagination.bootstrap-5') }}
+                            {{ $Meals->appends(['search' => request()->search])->links('vendor.pagination.bootstrap-5') }}
                         </div>
                     </div>
 

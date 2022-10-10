@@ -11,16 +11,8 @@ use Illuminate\Support\Facades\Auth;
 
 class DinerController extends Controller
 {
-  /**
-   * Display a listing of the resource.
-   *
-   * @return \Illuminate\Http\Response
-   */
-  /**
-   * Display a listing of the resource.
-   *
-   * @return \Illuminate\Http\Response
-   */
+
+
   public function index()
   {
     $Diners = Diner::orderBy('id', 'desc')->get();

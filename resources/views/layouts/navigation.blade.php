@@ -23,11 +23,10 @@
                 @role('Admin')
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                         <x-nav-link href="{{ url('laratrust/roles-assignment') }}">
-                            {{ __('使用者權限') }}
+                            {{ __('權限') }}
                         </x-nav-link>
                     </div>
-                @endrole
-                @role('Admin')
+
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                         <x-nav-link href="{{ route('DislikeFood.index') }}">
                             {{ __('不討喜食物') }}
@@ -168,6 +167,9 @@ vendor
             </x-nav-link> --}}
             <hr style=" background-color: rgba(c, c, c, 0.2); height: 0px; border: 1;border-style: solid ;">
             @role('Admin')
+               <x-responsive-nav-link href="{{ route('DislikeFood.index') }}">
+                    {{ __('權限') }}
+                </x-responsive-nav-link>
                 <x-responsive-nav-link href="{{ route('DislikeFood.index') }}">
                     {{ __('不討喜食物') }}
                 </x-responsive-nav-link>
