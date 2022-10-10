@@ -135,7 +135,7 @@
 
 
 
-      <form action="/ChainDiner" method="post">
+      <form action={{ url('/ChainDiner') }} method="post">
         <h1>新增知名連鎖餐飲</h1>
         @csrf
         <fieldset>

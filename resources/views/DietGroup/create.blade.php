@@ -135,7 +135,7 @@
 
 
 
-      <form action="/DietGroup" method="post">
+      <form action={{ url('/DietGroup') }} method="post">
         <h1>新增飲食族群</h1>
         @csrf
         <fieldset>

@@ -135,7 +135,7 @@
 
 
 
-      <form action="/DietBehavior" method="post">
+      <form action={{ url('/DietBehavior') }} method="post">
         <h1>新增飲食習性項目</h1>
         @csrf
         <fieldset>

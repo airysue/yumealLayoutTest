@@ -44,8 +44,7 @@ class DietGroupController extends Controller
     //前面key區塊的名稱為表單名    //該表格4個欄位名 dg_no  dg_name  dg_type dg_remark
     $request->validate([
       'dg_no' => 'required',
-      'dg_name' => 'required',
-      'dg_type' => 'required',
+      'dg_name' => 'required'
     ]);
 
     $DietGroup = new DietGroup();
@@ -78,31 +77,19 @@ class DietGroupController extends Controller
     ]);
   }
 
-  /**
-   * Show the form for editing the specified resource.
-   *
-   * @param  \App\Models\DietGroup  $DietGroup
-   * @return \Illuminate\Http\Response
-   */
+
   public function edit($id)
   {
     $DietGroup = DietGroup::findOrFail($id);
     return view('DietGroup.edit', compact(['DietGroup']));
   }
 
-  /**
-   * Update the specified resource in storage.
-   *
-   * @param  \Illuminate\Http\Request  $request
-   * @param  \App\Models\DietGroup  $DietGroup
-   * @return \Illuminate\Http\Response
-   */
+
   public function update(Request $request, $id)
   {
     $request->validate([
       'dg_no' => 'required',
-      'dg_name' => 'required',
-      'dg_type' => 'required',
+      'dg_name' => 'required'
     ]);
 
     $DietGroup = DietGroup::findOrFail($id);
@@ -117,12 +104,7 @@ class DietGroupController extends Controller
     return redirect('/DietGroup')->with('success', '更新資料成功');
   }
 
-  /**
-   * Remove the specified resource from storage.
-   *
-   * @param  \App\Models\DietGroup  $DietGroup
-   * @return \Illuminate\Http\Response
-   */
+
   public function destroy($id)
   {
     $DietGroup = DietGroup::findOrFail($id);

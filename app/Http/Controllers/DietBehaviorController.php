@@ -44,8 +44,8 @@ class DietBehaviorController extends Controller
     //前面key區塊的名稱為表單名    //該表格4個欄位名 db_no  db_name  db_type db_remark
     $request->validate([
       // 'db_no' => 'required',
-      'db_name' => 'required',
-      'db_type' => 'required',
+      'db_name' => 'required'
+
     ]);
 
     $DietBehavior = new DietBehavior();
@@ -118,8 +118,7 @@ class DietBehaviorController extends Controller
   {
     $request->validate([
       'db_no' => 'required',
-      'db_name' => 'required',
-      'db_type' => 'required',
+      'db_name' => 'required'
     ]);
 
     $DietBehavior = DietBehavior::findOrFail($id);

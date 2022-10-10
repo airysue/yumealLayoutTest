@@ -52,9 +52,9 @@
                                     <td data-label="編號"> {{ $DietGroup->dg_no }}</td>
                                     <td data-label="名稱"> {{ $DietGroup->dg_name }}</td>
                                     @if (trim($DietGroup->dg_type) != null)
-                                        <td data-label="類型"> {{ $DietGroup->dg_type }}</td>
+                                        <td data-label="排序"> {{ $DietGroup->dg_type }}</td>
                                     @else
-                                        <td data-label="類型"> &nbsp; </td>
+                                        <td data-label="排序"> &nbsp; </td>
                                     @endif
                                     <td data-label="操作">
                                         <a href="{{ route('DietGroup.show', $DietGroup->id) }}" class="show mx-1">

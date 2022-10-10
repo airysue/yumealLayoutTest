@@ -231,22 +231,7 @@ class DinerController extends Controller
     return redirect('/Diner')->with('success', '更新資料成功');
   }
 
-  /**
-   * Remove the specified resource from storage.
-   *
-   * @param  \App\Models\Diner  $Diner
-   * @return \Illuminate\Http\Response
-   */
 
-  /*
-  public function destroy($id)
-  {
-    $Diner = Diner::findOrFail($id);
-    $Diner->delete();
-    return redirect(url('/Diner'))->with('success', '刪除資料成功');
-  }
- */
-  //重新調整刪除功能
   public function destroy($id)
   {
     $Diner = Diner::findOrFail($id);

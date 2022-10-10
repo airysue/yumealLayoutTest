@@ -45,8 +45,8 @@ class ChainDinerController extends Controller
     //前面key區塊的名稱為表單名    //該表格4個欄位名 cd_no  cd_name  cd_type cd_remark
     $request->validate([
       'cd_no' => 'required',
-      'cd_name' => 'required',
-      'cd_type' => 'required',
+      'cd_name' => 'required'
+
     ]);
 
     $ChainDiner = new ChainDiner();
@@ -102,8 +102,8 @@ class ChainDinerController extends Controller
   {
     $request->validate([
       'cd_no' => 'required',
-      'cd_name' => 'required',
-      'cd_type' => 'required',
+      'cd_name' => 'required'
+
     ]);
 
     $ChainDiner = ChainDiner::findOrFail($id);

@@ -44,8 +44,7 @@ class DislikeFoodController extends Controller
     //前面key區塊的名稱為表單名    //該表格4個欄位名 df_no  df_name  df_type df_remark
     $request->validate([
       'df_no' => 'required',
-      'df_name' => 'required',
-      'df_type' => 'required',
+      'df_name' => 'required'
     ]);
 
     $DislikeFood = new DislikeFood();
@@ -103,8 +102,8 @@ class DislikeFoodController extends Controller
     //return $request->input();    exit;
     $request->validate([
       'df_no' => 'required',
-      'df_name' => 'required',
-      'df_type' => 'required',
+      'df_name' => 'required'
+
     ]);
 
     $DislikeFood = DislikeFood::findOrFail($id);
