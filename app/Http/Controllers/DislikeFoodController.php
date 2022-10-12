@@ -15,7 +15,7 @@ class DislikeFoodController extends Controller
   public function index()
   {
     $DislikeFoods = DislikeFood::orderBy('id', 'desc')->get();
-    $DislikeFoods = DislikeFood::orderBy('id', 'desc')->paginate(15);
+    $DislikeFoods = DislikeFood::orderBy('id', 'desc')->paginate(25);
     //return view('DislikeFood.index');
     //return view('DislikeFood.indexBasic', [
     return view('DislikeFood.index', [
