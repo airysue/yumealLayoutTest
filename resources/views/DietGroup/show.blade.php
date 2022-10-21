@@ -2,7 +2,7 @@
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{-- 很單純的頁面標題 --}}
-            {{ __('個人檔案') }}
+            {{ __('飲食族群小檔案') }}
         </h2>
     </x-slot>
 
@@ -14,7 +14,7 @@
 
                     <div class="card mt-4">
                         <div class="card-header">
-                            不討喜食物小檔案
+                            飲食族群小檔案
                         </div>
                         <div class="card-body">
                             <ul class="list-group list-group-flush">
@@ -26,7 +26,7 @@
                         </div>
                     </div>
 
-                    <div class="my-2 ml-2"><a href={{ url('/DietGroup') }} style="text-align: left;">Back to HOME</a></div>
+                    <div class="my-2 ml-2"><a href="{{ url('/DietGroup') }}" style="text-align: left;">Back to HOME</a></div>
 
 
 

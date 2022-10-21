@@ -135,7 +135,7 @@
 
 
 
-      <form action={{ url('/DinerType') }} method="post">
+      <form action="{{ url('/DinerType') }}" method="post">
         <h1>新增餐館類型</h1>
         @csrf
         <fieldset>

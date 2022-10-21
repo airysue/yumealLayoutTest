@@ -39,7 +39,7 @@
                         </div>
                     </div>
 
-          <div class="my-2 ml-2"><a href={{ url('/Meal') }} style="text-align: left;" >Back to HOME</a></div>
+          <div class="my-2 ml-2"><a href="{{ url('/Meal') }}"  style="text-align: left;" >Back to HOME</a></div>
 
 
 

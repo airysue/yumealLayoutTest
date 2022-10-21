@@ -37,7 +37,7 @@
                     </div>
 
 
-                    <div class="mt-2 ml-2"><a href={{ url('/DietBehavior') }} style="text-align: left;">Back to HOME</a></div>
+                    <div class="mt-2 ml-2"><a href="{{ url('/DietBehavior') }}" style="text-align: left;">Back to HOME</a></div>
 
                     <!-- 內容結束 -->
 

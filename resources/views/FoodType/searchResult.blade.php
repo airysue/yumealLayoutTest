@@ -2,7 +2,7 @@
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{-- 很單純的頁面標題 --}}
-            {{ __('飲食族群搜尋') }}
+            {{ __('不討喜食物類型搜尋') }}
         </h2>
     </x-slot>
 
@@ -21,7 +21,7 @@
                                 @foreach ($FoodTypes as $FoodType)
                                     <li class="list-group-item">
                                         <h4 class="card-title"> 編號：{{ $FoodType->ft_no }} /
-                                            飲食族群名稱：{{ $FoodType->ft_typename }}</h4>
+                                            不討喜食物類型名稱：{{ $FoodType->ft_typename }}</h4>
                                     </li>
                                 @endforeach
                             @else
@@ -37,7 +37,7 @@
                     </div>
 
 
-                    <div class="mt-2 ml-2"><a href={{ url('/FoodType') }} style="text-align: left;">Back to HOME</a></div>
+                    <div class="mt-2 ml-2"><a href="{{ url('/FoodType') }}" style="text-align: left;">Back to HOME</a></div>
 
                     <!-- 內容結束 -->
 

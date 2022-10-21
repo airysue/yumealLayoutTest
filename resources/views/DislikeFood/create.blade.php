@@ -135,7 +135,7 @@
 
 
 
-      <form action={{ url('/DislikeFood') }} method="post">
+      <form action="{{ url('/DislikeFood') }}" method="post">
         <h1>新增不討喜食物</h1>
         @csrf
         <fieldset>
