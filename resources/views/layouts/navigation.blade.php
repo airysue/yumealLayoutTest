@@ -6,7 +6,7 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     {{-- <a href="{{ route('dashboard') }}"> --}}
-                        <a href="/">
+                    <a href="/">
                         <x-application-logo class="block h-10 w-auto fill-current text-gray-600" />
                         {{ __('') }}
                     </a>
@@ -16,39 +16,64 @@
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     {{-- <x-nav-link href="{{route('dashboard')}}" :active="request()->routeIs('dashboard')"> --}}
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('yumeal管理中心') }}
+                        {{ __('管理中心') }}
                     </x-nav-link>
                 </div>
                 {{-- add for laratrust --}}
                 @role('Admin')
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                         <x-nav-link href="{{ url('laratrust/roles-assignment') }}">
-                            {{ __('會員權限管理') }}
+                            {{ __('權限') }}
                         </x-nav-link>
                     </div>
-                @endrole
-                @role('Admin')
+
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                         <x-nav-link href="{{ route('DislikeFood.index') }}">
-                            {{ __('不討喜食物管理') }}
+                            {{ __('不討喜食物') }}
                         </x-nav-link>
                     </div>
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                         <x-nav-link href="{{ route('ChainDiner.index') }}">
-                            {{ __('知名連鎖餐飲管理') }}
+                            {{ __('知名連鎖餐飲') }}
                         </x-nav-link>
                     </div>
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                         <x-nav-link href="{{ route('DietGroup.index') }}">
-                            {{ __('飲食族群管理') }}
+                            {{ __('飲食族群') }}
                         </x-nav-link>
                     </div>
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                         <x-nav-link href="{{ route('DietBehavior.index') }}">
-                            {{ __('飲食習性管理') }}
+                            {{ __('飲食習性清單') }}
+                        </x-nav-link>
+                    </div>
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link href="{{ route('DinerType.index') }}">
+                            {{ __('餐廳類別') }}
+                        </x-nav-link>
+                    </div>
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link href="{{ route('FoodType.index') }}">
+                            {{ __('食物類別') }}
                         </x-nav-link>
                     </div>
                 @endrole
+
+
+                @role('Vendor')
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link href="{{ route('Diner.index') }}">
+                            {{ __('餐廳管理') }}
+                        </x-nav-link>
+                    </div>
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link href="{{ route('Meal.index') }}">
+                            {{ __('餐點管理') }}
+                        </x-nav-link>
+                    </div>
+                @endrole
+
+
             </div>
 
             <!-- Settings Dropdown -->
@@ -57,7 +82,33 @@
                     <x-slot name="trigger">
                         <button
                             class="flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
-                            <div>{{ Auth::user()->name }}</div>
+                            <div>{{ Auth::user()->name }}</div> {{-- 取得使用者名字固定用法 --}}
+                            {{-- @if (Auth::user()->hasRole('Admin'))
+<p>admin</p>
+ @else
+ <p>'not admin'</p>
+ @endif --}}
+
+                            @if (Auth::user()->hasRole('Admin') && Auth::user()->hasRole('Vendor'))
+                                adminV
+                            @elseif(Auth::user()->hasRole('Admin'))
+                                <p>Admin</p>
+                            @elseif(Auth::user()->hasRole('Vendor'))
+                                <p>Vendor</p>
+                            @endif
+
+
+
+
+                            {{-- @role('Admin')
+admin
+@endrole
+@role('Vendor')
+vendor
+@endrole --}}
+
+
+
 
                             <div class="ml-1">
                                 <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg"
@@ -109,9 +160,49 @@
     <div :class="{ 'block': open, 'hidden': !open }" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
+                {{ __('管理中心') }}
             </x-responsive-nav-link>
+            {{-- <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                {{ __('yumeal管理中心') }}
+            </x-nav-link> --}}
+            <hr style=" background-color: rgba(c, c, c, 0.2); height: 0px; border: 1;border-style: solid ;">
+            @role('Admin')
+               <x-responsive-nav-link href="{{ route('DislikeFood.index') }}">
+                    {{ __('權限') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link href="{{ route('DislikeFood.index') }}">
+                    {{ __('不討喜食物') }}
+                </x-responsive-nav-link>
+
+                <x-responsive-nav-link href="{{ route('ChainDiner.index') }}">
+                    {{ __('知名連鎖餐飲') }}
+                </x-responsive-nav-link>
+
+                <x-responsive-nav-link href="{{ route('DietGroup.index') }}">
+                    {{ __('飲食族群') }}
+                    </x-responsive-nav-linkk>
+
+                    <x-responsive-nav-link href="{{ route('DietBehavior.index') }}">
+                        {{ __('飲食習性清單') }}
+                    </x-responsive-nav-link>
+                    <x-responsive-nav-link href="{{ route('DinerType.index') }}">
+                        {{ __('餐廳類別') }}
+                    </x-responsive-nav-link>
+                    <x-responsive-nav-link href="{{ route('FoodType.index') }}">
+                        {{ __('食物類別') }}
+                    </x-responsive-nav-link>
+                @endrole
+                <hr style=" background-color: rgba(c, c, c, 0.2); height: 0px; border: 1;border-style: solid ;">
+                @role('Vendor')
+                    <x-responsive-nav-link href="{{ route('Diner.index') }}">
+                        {{ __('餐廳管理') }}
+                    </x-responsive-nav-link>
+                    <x-responsive-nav-link href="{{ route('Meal.index') }}">
+                        {{ __('餐點管理') }}
+                    </x-responsive-nav-link>
+                @endrole
         </div>
+
 
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200">
@@ -124,7 +215,7 @@
                 <!-- Authentication -->
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
-                    <x-responsive-nav-link :href="route('profile')" >
+                    <x-responsive-nav-link :href="route('profile')">
                         {{ __('個人檔案') }}
                     </x-responsive-nav-link>
 

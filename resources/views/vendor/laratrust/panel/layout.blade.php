@@ -8,6 +8,8 @@
   <link rel="shortcut icon" href="/vendor/laratrust/img/logo.png">
   <title>Laratrust - @yield('title')</title>
   <link href="{{ mix('laratrust.css', 'vendor/laratrust') }}" rel="stylesheet">
+  {{-- airy自補css --}}
+  <link rel="stylesheet" type="text/css" href={{url('css/airy/laratrust_airyCopy.css')  }}>
   <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
 </head>
 <body>
@@ -18,7 +20,7 @@
         <div class="flex items-center">
           <div class="hidden md:block">
             <div class="flex items-baseline">
-              <a href="{{config('laratrust.panel.go_back_dashboard')}}" class="nav-button">← Go Back</a>
+              <a href="{{asset(config('laratrust.panel.go_back_dashboard'))}}" class="nav-button">← Go Back</a>
               <a
                 href="{{ route('laratrust.roles-assignment.index') }}"
                 class="ml-4 {{ request()->is('*roles-assigment*') ? 'nav-button-active' : 'nav-button' }}"

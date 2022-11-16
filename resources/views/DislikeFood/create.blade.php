@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sign Up Form</title>
+  <title>新增不討喜食物</title>
   <link rel="stylesheet" href="https://codepen.io/gymratpacks/pen/VKzBEp#0">
   <link href='https://fonts.googleapis.com/css?family=Nunito:400,300' rel='stylesheet' type='text/css'>
   <style>
@@ -135,7 +135,7 @@
 
 
 
-      <form action="/DislikeFood" method="post">
+      <form action="{{ url('/DislikeFood') }}" method="post">
         <h1>新增不討喜食物</h1>
         @csrf
         <fieldset>

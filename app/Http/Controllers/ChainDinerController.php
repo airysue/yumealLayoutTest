@@ -16,7 +16,7 @@ class ChainDinerController extends Controller
   public function index()
   {
     $ChainDiners = ChainDiner::orderBy('id', 'desc')->get();
-    $ChainDiners = ChainDiner::orderBy('id', 'desc')->paginate(5);
+    $ChainDiners = ChainDiner::orderBy('id', 'desc')->paginate(10);
     //return view('ChainDiner.index');
     //return view('ChainDiner.indexBasic', [
     return view('ChainDiner.index', [
@@ -45,8 +45,8 @@ class ChainDinerController extends Controller
     //前面key區塊的名稱為表單名    //該表格4個欄位名 cd_no  cd_name  cd_type cd_remark
     $request->validate([
       'cd_no' => 'required',
-      'cd_name' => 'required',
-      'cd_type' => 'required',
+      'cd_name' => 'required'
+
     ]);
 
     $ChainDiner = new ChainDiner();
@@ -102,8 +102,8 @@ class ChainDinerController extends Controller
   {
     $request->validate([
       'cd_no' => 'required',
-      'cd_name' => 'required',
-      'cd_type' => 'required',
+      'cd_name' => 'required'
+
     ]);
 
     $ChainDiner = ChainDiner::findOrFail($id);
@@ -128,14 +128,13 @@ class ChainDinerController extends Controller
   {
     $ChainDiner = ChainDiner::findOrFail($id);
     $ChainDiner->delete();
-    return redirect('/ChainDiner')->with('success', '刪除資料成功');;
+    return redirect('/ChainDiner')->with('success', '刪除資料成功');
   }
 
   public function search(Request $request)
   {
     // Get the search value from the request
     $search = $request->input('search');
-
     // Search in the title and body columns from the posts table
     $ChainDiners = ChainDiner::query()
       ->where('cd_name', 'LIKE', "%{$search}%")  //要寫確實存在的欄位名稱

@@ -82,19 +82,19 @@
                             </div>
                         </div>
 
-                        {{-- <div class="col-xs-12 col-sm-12 col-md-12">
+                        <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">
                                 <label><strong>Category :</strong></label><br>
                                 @php
-                                use App\Models\Dislike;
-                                $dislikes =  Dislike::all();
+                                use App\Models\DislikeFood;
+                                $DislikeFoods =  DislikeFood::all();
                                 @endphp
-                                @foreach ( $dislikes as $dislike)
-                                <label><input type="checkbox" name="dislike[]" value={{$dislike->id}}>{{$dislike->foodName}} </label>
+                                @foreach ( $DislikeFoods as $DislikeFood)
+                                <label><input type="checkbox" name="DislikeFood[]" value={{$DislikeFood->id}}>{{$DislikeFood->df_name}} </label>
                                 @endforeach
 
                             </div>
-                        </div> --}}
+                        </div>
 
                         <div class="col-xs-12 col-sm-12 col-md-12 text-center">
                             {{-- <button type="submit" class="btn btn-primary" onclick="return confirm('確定要執行嗎?')">Submit</button> --}}
