@@ -18,7 +18,7 @@
                         </div>
                         <div class="card-body">
                             <ul class="list-group list-group-flush">
-                                <li class="list-group-item">名稱： {{ $DislikeFood->df_name }}</li>
+                                <li class="list-group-item">名稱：{{ $DislikeFood->df_name }}</li>
                                 <li class="list-group-item">編號：{{ $DislikeFood->df_no }}</li>
                                 <li class="list-group-item">類型：{{ $DislikeFood->df_type }}</li>
                                 <li class="list-group-item">備註：{{ $DislikeFood->df_remark }}</li>
